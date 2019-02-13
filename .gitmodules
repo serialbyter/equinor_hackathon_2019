@@ -1,0 +1,3 @@
+[submodule "catkin_ws/src/px4"]
+	path = catkin_ws/src/px4
+	url = https://github.com/PX4/Firmware.git
