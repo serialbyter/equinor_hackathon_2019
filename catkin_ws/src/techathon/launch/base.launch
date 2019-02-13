@@ -1,0 +1,19 @@
+<launch>
+  <arg name="world_file" default="$(find techathon)/worlds/asphalt.world"/>
+
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="verbose" value="true"/>
+    <arg name="world_name" value="$(arg world_file)"/>
+    <arg name="paused" value="false"/>
+  </include>
+
+  <include file="$(find mavros)/launch/px4.launch">
+    <arg name="fcu_url" value="udp://:14540@127.0.0.1:14557"/>
+  </include>
+
+  <include file="$(find px4)/launch/px4.launch">
+    <arg name="est" value="lpe"/>
+    <arg name="interactive" value="false"/>
+  </include>
+</launch>
+
