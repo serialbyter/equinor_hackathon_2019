@@ -2,7 +2,5 @@
 build/
 devel/
 install/
-PX4_2017/
-Task2/Data/
-Task2/unlabeledData/
+software/gzweb/
 *.pyc

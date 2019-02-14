@@ -1,3 +1,6 @@
 [submodule "catkin_ws/src/px4"]
 	path = catkin_ws/src/px4
 	url = https://github.com/PX4/Firmware.git
+[submodule "catkin_ws/src/sitl_gazebo"]
+	path = catkin_ws/src/sitl_gazebo
+	url = https://github.com/PX4/sitl_gazebo.git
