@@ -8,6 +8,7 @@ sudo apt-get update && sudo apt-get install -q -y \
   cmake \
   curl \
   imagemagick \
+  libalsaplayer-dev \
   libboost-all-dev \
   libgazebo9-dev \
   libjansson-dev \
