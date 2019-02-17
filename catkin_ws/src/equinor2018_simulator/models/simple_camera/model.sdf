@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+  <model name="simple_camera">
+    <static>false</static>
+    <pose frame="">0 0 0 0 0 0</pose>
+    <link name="link">
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>0.1 0.1 0.1</size>
+          </box>
+        </geometry>
+      </visual>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.11 0.11 0.11</size>
+          </box>
+        </geometry>
+      </collision>
+      <sensor name="my_camera" type="camera">
+        <camera>
+          <image>
+            <width>100</width>
+            <height>100</height>
+          </image>
+          <clip>
+            <near>0.001</near>
+            <far>100</far>
+          </clip>
+        </camera>
+        <always_on>1</always_on>
+        <update_rate>30</update_rate>
+      </sensor>
+    </link>
+  </model>
+</sdf>
