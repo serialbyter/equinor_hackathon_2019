@@ -134,7 +134,7 @@ add_library(global_map_service src/global_map_service.cpp)
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(game_master_1 src/game_master_1.cpp)
-add_executable(game_master_3 src/game_master_3.cpp)
+#add_executable(game_master_3 src/game_master_3.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -145,12 +145,12 @@ add_executable(game_master_3 src/game_master_3.cpp)
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 add_dependencies(game_master_1 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(game_master_3 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+#add_dependencies(game_master_3 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(global_map_service csv_to_gz_parser map_handle)
 target_link_libraries(game_master_1 ${catkin_LIBRARIES} mission_timer global_map_service)
-target_link_libraries(game_master_3 ${catkin_LIBRARIES} mission_timer global_map_service)
+#target_link_libraries(game_master_3 ${catkin_LIBRARIES} mission_timer global_map_service)
 
 #############
 ## Install ##
