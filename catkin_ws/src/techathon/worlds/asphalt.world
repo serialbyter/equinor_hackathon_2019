@@ -14,8 +14,8 @@
       <uri>model://asphalt_plane</uri>
     </include>
     <include>
-      <uri>model://iris</uri>
-      <pose>1.00 1.00 0.83 0 0 1.14</pose>
+      <uri>model://equidrone</uri>
+      <pose>1.0 1.0 0.83 0 0 1.14</pose>
     </include>
     <physics name='default_physics' default='0' type='ode'>
       <gravity>0 0 -9.8066</gravity>
@@ -41,13 +41,14 @@
     <gui fullscreen='0'>
       <camera name='user_camera'>
         <pose>-10 0 6 0 0.3 0</pose>
-        <!-- <view_controller>orbit</view_controller>
+         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
-        -->
+<!--
         <track_visual>
           <name>iris</name>
           <use_model_frame>1</use_model_frame>
         </track_visual> 
+-->
       </camera>
     </gui>
   </world>

@@ -9,7 +9,6 @@ project(techathon)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   ascend_msgs
-  dronelib
   geometry_msgs
   rospy
   std_msgs

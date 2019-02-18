@@ -1,0 +1,58 @@
+<launch>
+    <arg name="gui" default="false"/>
+    <group if="$(eval env('TASK') == 'task1')">
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="world_name" value="$(find equinor2018_simulator)/worlds/flyablemap.world"/>
+		<arg name="gui" value="$(arg gui)"/>
+		<arg name="verbose" value="true"/>
+		<!-- More can be added here -->
+	</include>
+        <include file="$(find game_master)/launch/game_master_1.launch">
+		<arg name="csv_map" value="flyablemap.csv"/>
+	</include>
+    </group>
+
+    <group if="$(eval env('TASK') == 'task1small')">
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="world_name" value="$(find equinor2018_simulator)/worlds/task1small.world"/>
+		<arg name="gui" value="$(arg gui)"/>
+		<arg name="verbose" value="true"/>
+		<!-- More can be added here -->
+	</include>
+        <include file="$(find game_master)/launch/game_master_1.launch">
+		<arg name="csv_map" value="task1small.csv"/>
+                <arg name="scorefile" value="dontusethis.txt"/>
+	</include>
+    </group>
+
+    <group if="$(eval env('TASK') == 'task3')">
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="world_name" value="$(find equinor2018_simulator)/worlds/task3.world"/>
+		<arg name="gui" value="$(arg gui)"/>
+		<arg name="verbose" value="true"/>
+		<!-- More can be added here -->
+	</include>
+        <include file="$(find game_master)/launch/game_master_3.launch">
+		<arg name="csv_map" value="task3.csv"/>
+        </include>
+    </group>
+
+    <group if="$(eval env('TASK') == 'task3small')">
+	<include file="$(find gazebo_ros)/launch/empty_world.launch">
+		<arg name="world_name" value="$(find equinor2018_simulator)/worlds/task3small.world"/>
+		<arg name="gui" value="$(arg gui)"/>
+		<arg name="verbose" value="true"/>
+		<!-- More can be added here -->
+	</include>
+        <include file="$(find game_master)/launch/game_master_3.launch">
+		<arg name="csv_map" value="task3small.csv"/>
+                <arg name="scorefile" value="dontusethis.txt"/>
+        </include>
+    </group>
+
+    <include file="$(find mavros)/launch/px4.launch">
+        <arg name="fcu_url" value="udp://:14540@127.0.0.1:14560"/>
+    </include>
+ 
+    <node name="mocap_node" pkg="equinor2018_simulator" type="mocap_node"/>
+</launch>
