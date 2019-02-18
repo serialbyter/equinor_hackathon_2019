@@ -23,6 +23,6 @@
     <arg name="interactive" value="false"/>
   </include>
 
-  <node name="gzweb_node" if="$(arg gzweb_start)" pkg="techathon" type="start_gzweb.sh" args="$(arg gzweb_dir) $(arg gzweb_port)" output="screen"/>
+  <node if="$(arg gzweb_start)" name="gzweb_node" pkg="techathon" type="start_gzweb.sh" args="$(arg gzweb_dir) $(arg gzweb_port)" output="screen"/>
 </launch>
 

@@ -41,13 +41,14 @@
     <gui fullscreen='0'>
       <camera name='user_camera'>
         <pose>-10 0 6 0 0.3 0</pose>
-        <!-- <view_controller>orbit</view_controller>
+         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
-        -->
+<!--
         <track_visual>
           <name>iris</name>
           <use_model_frame>1</use_model_frame>
         </track_visual> 
+-->
       </camera>
     </gui>
   </world>

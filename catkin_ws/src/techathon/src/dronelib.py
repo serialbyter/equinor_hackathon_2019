@@ -5,7 +5,7 @@ from __future__ import print_function
 import time
 
 import rospy
-from mavros_msgs.msg import PositionTarget, State, ParamValue
+from mavros_msgs.msg import PositionTarget
 from mavros_msgs.srv import CommandBool, SetMode, ParamSet
 from geometry_msgs.msg import PoseStamped
 from std_msgs.msg import Header
@@ -74,13 +74,13 @@ class Drone(object):
 
             rate.sleep()
 
-    def takeoff(self):
+    def takeoff(self, height = 5.0):
         """
         Send takeoff setpoints at current position.
         """
         self._setpoint_msg.position.x = self._last_pose.pose.position.x
         self._setpoint_msg.position.y = self._last_pose.pose.position.y
-        self._setpoint_msg.position.z = 5.0
+        self._setpoint_msg.position.z = height
         self._setpoint_msg.type_mask = _DEFAULT #| _TAKEOFF
 
     def set_target(self, x, y, yaw):
