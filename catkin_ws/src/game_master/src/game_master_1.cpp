@@ -3,7 +3,7 @@
 #include <mavros_msgs/State.h>
 #include <geometry_msgs/PoseStamped.h>
 
-#include "equinor2018_simulator/zone.h"
+#include "simulator/zone.h"
 #include "game_master/mission_timer.h"
 #include "game_master/global_map_service.h"
 

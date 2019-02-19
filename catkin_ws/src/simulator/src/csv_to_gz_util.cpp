@@ -3,8 +3,8 @@
 #include <fstream>
 #include <stdexcept>
 
-#include "equinor2018_simulator/csv_parser.h"
-#include "equinor2018_simulator/wall_merger.h"
+#include "simulator/csv_parser.h"
+#include "simulator/wall_merger.h"
 
 struct Wall {
     int x,y,x_size,y_size; // (x,y) is the lower point of the box

@@ -17,7 +17,7 @@ if [ -z "$DONT_RUN" ]
 then
     #gazebo --verbose ${sh_file_path}/worlds/flyablemap.world 
     #gazebo --verbose ${sh_file_path}/testing.world 
-    TASK=task1 roslaunch equinor2018_simulator testing.launch gui:=false
+    TASK=task1 roslaunch simulator testing.launch gui:=false
 
 #    sleep 3
 #    nice -n 20 gzclient --verbose

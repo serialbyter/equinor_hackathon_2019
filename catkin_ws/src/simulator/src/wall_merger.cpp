@@ -1,5 +1,5 @@
 
-#include "equinor2018_simulator/map_handle.h"
+#include "simulator/map_handle.h"
 #include <iostream>
 
 

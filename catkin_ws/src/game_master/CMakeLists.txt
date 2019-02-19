@@ -10,7 +10,7 @@ add_compile_options(-std=c++11)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
-  equinor2018_simulator
+  simulator
   std_msgs
   ascend_msgs
   mavros_msgs

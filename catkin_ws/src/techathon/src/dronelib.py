@@ -5,7 +5,7 @@ from __future__ import print_function
 import time
 
 import rospy
-from mavros_msgs.msg import PositionTarget
+from mavros_msgs.msg import PositionTarget, State, ParamValue
 from mavros_msgs.srv import CommandBool, SetMode, ParamSet
 from geometry_msgs.msg import PoseStamped
 from std_msgs.msg import Header
@@ -40,18 +40,18 @@ class Drone(object):
         rospy.logdebug("Waiting for MAVROS to start")
         rospy.wait_for_message("mavros/local_position/pose", PoseStamped)
 
-        # Make drone less aggressive
-        rospy.wait_for_service("mavros/param/set")
-        mavparam = rospy.ServiceProxy('mavros/param/set', ParamSet)
-        mavparam("MC_PITCH_P", ParamValue(0, 2.0)).success
-        mavparam("MC_ROLL_P", ParamValue(0, 2.0)).success
-        mavparam("MPC_VEL_XY_MAX", ParamValue(0, 4.0)).success
+        ## Make drone less aggressive
+        #rospy.wait_for_service("mavros/param/set")
+        #mavparam = rospy.ServiceProxy('mavros/param/set', ParamSet)
+        #mavparam("MC_PITCH_P", ParamValue(0, 2.0)).success
+        #mavparam("MC_ROLL_P", ParamValue(0, 2.0)).success
+        #mavparam("MPC_VEL_XY_MAX", ParamValue(0, 4.0)).success
 
         # Send a few setpoint to make MAVROS happy
         rate = rospy.Rate(20.0)
         for _ in range(40):
-            self._publish_setpoint(None)
             rate.sleep()
+            self._publish_setpoint(None)
 
 
         rospy.Timer(rospy.Duration(0.05), self._publish_setpoint)

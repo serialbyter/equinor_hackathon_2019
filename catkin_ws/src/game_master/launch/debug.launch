@@ -1,5 +1,5 @@
 <launch>
 	<include file="$(find game_master)/launch/game_master_3.launch">
-		<arg name="csv_map" value="$(find equinor2018_simulator)/csvMaps/multiple_goals.csv"/>
+		<arg name="csv_map" value="$(find simulator)/csvMaps/multiple_goals.csv"/>
 	</include>
 </launch>

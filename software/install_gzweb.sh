@@ -1,7 +1,7 @@
 #!/bin/bash
 
 shdir=$(realpath $(dirname $0))
-modeldir=$(realpath $shdir/../catkin_ws/src/techathon/models)
+modeldir=$(realpath $shdir/../catkin_ws/src/simulator/models)
 
 sudo apt-get update && sudo apt-get install -q -y \
   build-essential \

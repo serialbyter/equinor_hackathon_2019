@@ -6,7 +6,7 @@
 #include <iterator>
 #include <fstream>
 
-#include "equinor2018_simulator/csv_parser.h"
+#include "simulator/csv_parser.h"
 
 
 class WordDelimitedByComma : public std::string {};

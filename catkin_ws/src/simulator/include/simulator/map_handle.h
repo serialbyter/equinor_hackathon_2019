@@ -4,7 +4,7 @@
 #include <ros/ros.h>
 #include <ascend_msgs/Map.h>
 
-#include "equinor2018_simulator/zone.h"
+#include "simulator/zone.h"
 
 #include <string>
 #include <vector>

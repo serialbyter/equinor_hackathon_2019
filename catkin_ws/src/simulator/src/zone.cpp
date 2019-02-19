@@ -1,4 +1,4 @@
-#include "equinor2018_simulator/zone.h"
+#include "simulator/zone.h"
 
 void Zone::setZoneBox(float x_min, float y_min, float x_max, float y_max)
 {

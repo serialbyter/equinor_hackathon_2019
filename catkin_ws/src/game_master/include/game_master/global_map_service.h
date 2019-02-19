@@ -3,7 +3,7 @@
 
 #include <ros/ros.h>
 #include <ascend_msgs/GlobalMap.h>
-#include <equinor2018_simulator/map_handle.h>
+#include <simulator/map_handle.h>
 
 class GlobalMapService {
     public:

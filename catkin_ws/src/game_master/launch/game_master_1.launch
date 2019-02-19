@@ -3,7 +3,7 @@
 	<arg name="scorefile" default="$(find game_master)/scorefile1.txt"/>
 
 	<node name="game_master_1" pkg="game_master" type="game_master_1" output="screen">
-		<param name="csv_map" value="$(find equinor2018_simulator)/csvMaps/$(arg csv_map)"/>
+		<param name="csv_map" value="$(find simulator)/csvMaps/$(arg csv_map)"/>
 		<param name="scorefile" value="$(arg scorefile)"/>
 	</node>
 </launch>

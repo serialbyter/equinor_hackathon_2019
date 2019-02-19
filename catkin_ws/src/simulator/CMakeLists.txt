@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(equinor2018_simulator)
+project(simulator)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
@@ -8,11 +8,11 @@ add_compile_options(-std=c++11)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  ascend_msgs
   gazebo_msgs
   gazebo_ros
   geometry_msgs
   mavros_msgs
-  ascend_msgs
   roscpp
 )
 
@@ -108,7 +108,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 	INCLUDE_DIRS include
     LIBRARIES map_handle
-    CATKIN_DEPENDS gazebo_msgs gazebo_ros geometry_msgs mavros_msgs roscpp ascend_msgs
+    CATKIN_DEPENDS ascend_msgs gazebo_msgs gazebo_ros geometry_msgs mavros_msgs roscpp
 #  DEPENDS system_lib
 )
 
@@ -125,7 +125,7 @@ include_directories(
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/equinor2018_simulator.cpp
+#   src/${PROJECT_NAME}/simulator.cpp
 # )
 
 add_library(csv_to_gz_parser src/csv_parser.cpp)
@@ -203,7 +203,7 @@ install(DIRECTORY include/${PROJECT_NAME}/
 #############
 
 ## Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_equinor2018_simulator.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_simulator.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()

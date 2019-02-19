@@ -1,7 +1,7 @@
 #include "game_master/global_map_service.h"
 #include <ascend_msgs/GlobalMap.h>
 
-#include <equinor2018_simulator/map_handle.h>
+#include <simulator/map_handle.h>
 
 
 GlobalMapService::GlobalMapService(std::shared_ptr<ros::NodeHandle> nh, const std::string& csv_file)

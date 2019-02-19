@@ -2,7 +2,7 @@
     <arg name="gui" default="false"/>
     <group if="$(eval env('TASK') == 'task1')">
 	<include file="$(find gazebo_ros)/launch/empty_world.launch">
-		<arg name="world_name" value="$(find equinor2018_simulator)/worlds/flyablemap.world"/>
+		<arg name="world_name" value="$(find simulator)/worlds/flyablemap.world"/>
 		<arg name="gui" value="$(arg gui)"/>
 		<arg name="verbose" value="true"/>
 		<!-- More can be added here -->
@@ -14,7 +14,7 @@
 
     <group if="$(eval env('TASK') == 'task1small')">
 	<include file="$(find gazebo_ros)/launch/empty_world.launch">
-		<arg name="world_name" value="$(find equinor2018_simulator)/worlds/task1small.world"/>
+		<arg name="world_name" value="$(find simulator)/worlds/task1small.world"/>
 		<arg name="gui" value="$(arg gui)"/>
 		<arg name="verbose" value="true"/>
 		<!-- More can be added here -->
@@ -27,7 +27,7 @@
 
     <group if="$(eval env('TASK') == 'task3')">
 	<include file="$(find gazebo_ros)/launch/empty_world.launch">
-		<arg name="world_name" value="$(find equinor2018_simulator)/worlds/task3.world"/>
+		<arg name="world_name" value="$(find simulator)/worlds/task3.world"/>
 		<arg name="gui" value="$(arg gui)"/>
 		<arg name="verbose" value="true"/>
 		<!-- More can be added here -->
@@ -39,7 +39,7 @@
 
     <group if="$(eval env('TASK') == 'task3small')">
 	<include file="$(find gazebo_ros)/launch/empty_world.launch">
-		<arg name="world_name" value="$(find equinor2018_simulator)/worlds/task3small.world"/>
+		<arg name="world_name" value="$(find simulator)/worlds/task3small.world"/>
 		<arg name="gui" value="$(arg gui)"/>
 		<arg name="verbose" value="true"/>
 		<!-- More can be added here -->
@@ -54,5 +54,5 @@
         <arg name="fcu_url" value="udp://:14540@127.0.0.1:14560"/>
     </include>
  
-    <node name="mocap_node" pkg="equinor2018_simulator" type="mocap_node"/>
+    <node name="mocap_node" pkg="simulator" type="mocap_node"/>
 </launch>

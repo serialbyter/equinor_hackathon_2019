@@ -1,9 +1,9 @@
-#include <equinor2018_simulator/csv_parser.h>
+#include <simulator/csv_parser.h>
 
 #include <std_msgs/MultiArrayDimension.h>
 
-#include "equinor2018_simulator/map_handle.h"
-#include "equinor2018_simulator/zone.h"
+#include "simulator/map_handle.h"
+#include "simulator/zone.h"
 #include <ascend_msgs/Map.h>
 
 #include <iostream>
