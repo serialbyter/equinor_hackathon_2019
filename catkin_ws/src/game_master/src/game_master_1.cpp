@@ -120,13 +120,16 @@ int main(int argc, char* argv[]){
     ROS_INFO_COND(success, "Success! Duration: %f", duration.toSec());
     ROS_INFO_COND(!success, "Duration: %f", duration.toSec());
 
-    auto t = std::time(nullptr);
-    auto tm = *std::localtime(&t);
+    if(success){
 
-    std::ofstream outfile;
-    outfile.open(scorefile, std::ios_base::app);
-    outfile << "[" << std::put_time(&tm, "%d-%m-%Y %H-%M-%S") << "], success:" << success << ", time:" << duration.toSec() << std::endl;
-    
+        auto t = std::time(nullptr);
+        auto tm = *std::localtime(&t);
+
+        std::ofstream outfile;
+        outfile.open(scorefile, std::ios_base::app);
+        outfile << "[" << std::put_time(&tm, "%d-%m-%Y %H-%M-%S") << ", time:" << duration.toSec() << std::endl;
+            
+    }
 
     return 0;
 }
