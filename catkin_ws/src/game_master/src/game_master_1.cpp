@@ -127,7 +127,7 @@ int main(int argc, char* argv[]){
 
         std::ofstream outfile;
         outfile.open(scorefile, std::ios_base::app);
-        outfile << "[" << std::put_time(&tm, "%d-%m-%Y %H-%M-%S") << ", time:" << duration.toSec() << std::endl;
+        outfile << "[" << std::put_time(&tm, "%d-%m-%Y %H-%M-%S") << ", " << duration.toSec() << std::endl;
             
     }
 
