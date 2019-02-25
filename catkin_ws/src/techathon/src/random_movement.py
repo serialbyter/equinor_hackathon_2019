@@ -1,33 +1,43 @@
 #!/usr/bin/env python
 
-from __future__ import print_function
-
 import time
 import random
 
 import rospy
+
 from dronelib import Drone
 
-rospy.init_node("dronelib_example")
+def main():
+    rospy.init_node("dronelib_example")
 
-drone = Drone()
-drone.activate()
+    # Create a drone object, sets up necessary connections to simulator
+    drone = Drone()
 
-drone.takeoff()
+    # Arm the drone, which allows it to receive commands
+    drone.activate()
 
-# Assume takeoff takes less than 5 seconds
-time.sleep(5)
+    # Takeoff to default height setpoint
+    drone.takeoff()
 
-while not rospy.is_shutdown():
-    # generate some random point
-    x = random.randint(-5, 5)
-    y = random.randint(-5, 5)
-    yaw = random.randint(0, 7)
+    # Assume takeoff takes less than 5 seconds
+    time.sleep(5)
 
-    # move to random point
-    drone.set_target(x, y, yaw)
+    rate = rospy.Rate(0.1)
+    while not rospy.is_shutdown():
+        # generate some random point and rotation
+        x = random.randint(-5, 5)
+        y = random.randint(-5, 5)
+        yaw = random.randint(0, 7)
 
-    # sleep
-    time.sleep(10)
+        # move to random point
+        drone.set_target(x, y, yaw)
+
+        # control rate of loop
+        rate.sleep()
 
 
+if __name__=="__main__":
+    try:
+        main()
+    except rospy.ROSInterruptException:
+        pass

@@ -129,6 +129,8 @@ include_directories(
 # )
 
 add_library(csv_to_gz_parser src/csv_parser.cpp)
+add_dependencies(csv_to_gz_parser ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
 add_library(map_handle src/map_handle.cpp src/zone.cpp)
 add_dependencies(map_handle ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 

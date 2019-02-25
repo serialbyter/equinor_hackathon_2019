@@ -10,6 +10,7 @@ from mavros_msgs.srv import CommandBool, SetMode, ParamSet
 from geometry_msgs.msg import PoseStamped
 from std_msgs.msg import Header
 
+# Hopefully avoids destroying the variable pt if it is already in use
 pt = PositionTarget()
 _DEFAULT = pt.IGNORE_VX | pt.IGNORE_VY | pt.IGNORE_VZ | pt.IGNORE_AFX | pt.IGNORE_AFY | pt.IGNORE_AFZ | pt.IGNORE_YAW_RATE
 _TAKEOFF = 0x1000
@@ -35,7 +36,6 @@ class Drone(object):
         self._state_sub = rospy.Subscriber('mavros/state',
                                            State, self._state_cb)
 
-
         # wait for mavros to start publishing
         rospy.logdebug("Waiting for MAVROS to start")
         rospy.wait_for_message("mavros/local_position/pose", PoseStamped)
@@ -55,10 +55,12 @@ class Drone(object):
 
 
         rospy.Timer(rospy.Duration(0.05), self._publish_setpoint)
-        rospy.loginfo("Drone initialized")
+        rospy.loginfo("Drone Initialized")
 
 
-    # ----- API ------
+    # -------------------
+    # ------ <API> ------
+    # -------------------
     def activate(self):
         """
         Arm the drone and place into offboard.
@@ -98,17 +100,35 @@ class Drone(object):
         """
         return self._last_pose.pose
 
+    # -------------------
+    # ----- </API> ------
+    # -------------------
 
-    # --- Internal functions -----
+
+    # -----------------------
+    # ----- <Internal> ------
+    # -----------------------
     def _pose_cb(self, posestamped):
+        """
+        Receive and store PoseStamped msgs from MAVROS.
+        """
         self._last_pose = posestamped
 
     def _state_cb(self, state):
+        """
+        Receive and store State msgs from MAVROS.
+        """
         self._last_state = state
 
     def _publish_setpoint(self, event):
+        """
+        Stamp and publish current setpoint to MAVROS.
+        """
         self._setpoint_msg.header.stamp = rospy.Time.now()
         self._setpoint_msg.header.frame_id = "map"
         self._setpoint_pub.publish(self._setpoint_msg)
 
+    # ------------------------
+    # ----- </Internal> ------
+    # ------------------------
 

@@ -10,29 +10,30 @@ from dronelib import Drone
 
 rospy.init_node("dronelib_example")
 
+# Create drone, activate it and send takeoff command
 drone = Drone()
 drone.activate()
-
 drone.takeoff(height=3.0)
 
 # Monitor takeoff and dont progress until we are high enough
-rate = rospy.Rate(1.0)
 position = drone.get_pose().position
-while position.z < 2.5:
+rate = rospy.Rate(1.0)
+while position.z < 2.5 and not rospy.is_shutdown():
     # Control rate of while loop
     rate.sleep()
 
     # Update position
-    position = drone.get_pose().position 
+    position = drone.get_pose().position
 
 print("Takeoff complete")
 
-# generate some random point
+## Takeoff completed, do something useful
+# Generate some random point
 x = random.randint(-5, 5)
 y = random.randint(-5, 5)
 yaw = random.randint(0, 7)
 
-# move to random point
+# Move to random point
 drone.set_target(x, y, yaw)
 
 
