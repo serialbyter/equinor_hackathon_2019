@@ -8,6 +8,7 @@ sudo apt install -y ros-melodic-ros-base \
   ros-melodic-gazebo-ros \
   ros-melodic-gazebo-msgs \
   ros-melodic-mavros \
+  ros-melodic-mavros-extras \
   ros-melodic-mavros-msgs \
   ros-melodic-vision-opencv \
   libopencv-dev 

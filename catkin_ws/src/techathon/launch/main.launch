@@ -24,6 +24,8 @@
     <arg name="interactive" value="false"/>
   </include>
 
-  <node if="$(arg gzweb_start)" respawn="true" name="gzweb_node" pkg="simulator" type="start_gzweb.sh" args="$(arg gzweb_dir) $(arg gzweb_port)" output="screen"/>
+  <node name="mocap_node" pkg="simulator" type="mocap_node"/>
+
+  <node if="$(arg gzweb_start)" respawn="true" name="gzweb_node" pkg="simulator" type="start_gzweb.sh" args="$(arg gzweb_dir) $(arg gzweb_port)"/>
 </launch>
 
