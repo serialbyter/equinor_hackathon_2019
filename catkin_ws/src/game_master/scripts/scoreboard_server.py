@@ -6,14 +6,13 @@ import rospy
 import requests
 import pandas as pd
 
-from std_srvs.srv import Empty
+from std_srvs.srv import Empty, EmptyResponse
 
 scorefile_path = os.path.join(os.path.dirname(__file__), '..')+"/scorefile1.txt"
 
 def add_new_scores_to_db(req):
 
-    #TODO team name server
-    print("here")
+    #TODO team name service?
     team = "usr1"
 
     scores = pd.read_csv(scorefile_path, header=None,
@@ -30,12 +29,13 @@ def add_new_scores_to_db(req):
             scores['Sent'].values[:] = 1
             scores.to_csv(scorefile_path, header=False, index=False)
 
+    return EmptyResponse()
+
 def main():
     #Init ROS node
-    rospy.init_node('scoreboard_server')
-    s = rospy.Service("publish_scores", Empty, add_new_scores_to_db)
-    while not rospy.is_shutdown():
-        rospy.spin();
+    rospy.init_node('scoreboard_service')
+    s = rospy.Service("/publish_scores", Empty, add_new_scores_to_db)
+    rospy.spin()
 
 if __name__ == '__main__':
     try:

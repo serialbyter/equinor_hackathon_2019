@@ -55,7 +55,7 @@ int main(int argc, char* argv[]){
     ros::init(argc, argv, "game_master_1");
     std::shared_ptr<ros::NodeHandle> nh = std::make_shared<ros::NodeHandle>("~");
 
-    ros::ServiceClient client = nh->serviceClient<std_srvs::Empty>("publish_scores");
+    ros::ServiceClient client = nh->serviceClient<std_srvs::Empty>("/publish_scores");
 
     const std::string csv_file = loadRequired<std::string>(nh, "csv_map");
     const std::string scorefile = loadRequired<std::string>(nh, "scorefile");
@@ -83,8 +83,7 @@ int main(int argc, char* argv[]){
     // goal_pub = nh->advertise<geometry_msgs::Pose>("/goal", 1);
     // ros::Timer pub_timer = nh->createTimer(ros::Duration(1.f), &publishGoal);
 
-    ros::Rate rate(0.1f);
-    
+    ros::Rate rate(0.9f);
     ROS_INFO("Waiting for mission to start");
 
     // Wait for mission to start
@@ -99,20 +98,19 @@ int main(int argc, char* argv[]){
     timer.start();
 
     // Wait for drone to succeed
-    bool success = true;
+    bool success = false;
     while (!success && ros::ok()) {
-        const auto& pos = drone_pose_p->pose.position;
-
-        if (success || zone.isInside(pos.x, pos.y)) {
-            ROS_INFO_THROTTLE(0.2, "Drone is inside zone");
-            // maybe check for more stuff here
-            success = true;
-            break;
-        }
-        else {
-            ROS_INFO_THROTTLE(0.2, "Drone is not in zone: (%f, %f)", pos.x, pos.y);
-        }
-
+        // const auto& pos = drone_pose_p->pose.position;
+        // if (success || zone.isInside(pos.x, pos.y)) {
+        //     ROS_INFO_THROTTLE(0.2, "Drone is inside zone");
+        //     // maybe check for more stuff here
+        //     success = true;
+        //     break;
+        // }
+        // else {
+        //     ROS_INFO_THROTTLE(0.2, "Drone is not in zone: (%f, %f)", pos.x, pos.y);
+        // }
+        success = true;
         ros::spinOnce();
         rate.sleep();
     }
@@ -131,12 +129,14 @@ int main(int argc, char* argv[]){
         std::ofstream outfile;
         outfile.open(scorefile, std::ios_base::app);
         outfile << "[" << std::put_time(&tm, "%d-%m-%Y %H-%M-%S") << "], " << duration.toSec() << ", " << 0 << std::endl;
-        
-        std_srvs::Empty srv;
-        if(client.call(srv)){
-            std::cout << "Called server" << std::endl;
-        }
 
+        std_srvs::Empty srv;
+
+        if(client.call(srv)){
+            ROS_DEBUG("Successfully sent score to server");
+        } else {
+            ROS_DEBUG("Failed send score to server");
+        }
     }
 
     return 0;
