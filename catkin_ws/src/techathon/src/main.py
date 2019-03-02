@@ -36,7 +36,6 @@ def main():
     rate = rospy.Rate(30)
     while not rospy.is_shutdown():
         rate.sleep()
-        
         # --- YOUR COOL STUFF GOES HERE ---
 
 

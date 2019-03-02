@@ -2,13 +2,14 @@
   <env name="GAZEBO_PLUGIN_PATH" value="$(optenv GAZEBO_PLUGIN_PATH):$(find techathon)/../../devel/lib"/>
   <env name="GAZEBO_MODEL_PATH" value="$(optenv GAZEBO_MODEL_PATH):$(find simulator)/models"/>
 
+  <arg name="gz_verbose" default="false"/>
   <arg name="gzweb_start" default="true"/>
   <arg name="gzweb_dir" default="$(find techathon)/../../../software/gzweb"/>
   <arg name="gzweb_port" default="8080"/>
   <arg name="world_file" default="$(find simulator)/worlds/asphalt.world"/>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="verbose" value="true"/>
+    <arg name="verbose" value="$(arg gz_verbose)"/>
     <arg name="world_name" value="$(arg world_file)"/>
     <arg name="paused" value="false"/>
     <arg name="gui" value="false"/>
@@ -23,6 +24,6 @@
     <arg name="interactive" value="false"/>
   </include>
 
-  <node if="$(arg gzweb_start)" name="gzweb_node" pkg="simulator" type="start_gzweb.sh" args="$(arg gzweb_dir) $(arg gzweb_port)" output="screen"/>
+  <node if="$(arg gzweb_start)" respawn="true" name="gzweb_node" pkg="simulator" type="start_gzweb.sh" args="$(arg gzweb_dir) $(arg gzweb_port)" output="screen"/>
 </launch>
 

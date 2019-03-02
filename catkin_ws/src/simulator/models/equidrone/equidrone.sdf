@@ -553,6 +553,7 @@
     </plugin>
 
     <!-- ********** CUSTOM SENSORS ********** -->
+<!--
     <link name="sensor_lidar_scanner_link">
       <pose frame=''>0 0 -0.07 0 0 0</pose>
       <self_collide>0</self_collide>
@@ -567,7 +568,6 @@
               <izz>0.0000075</izz>
           </inertia>
 			</inertial>
-      <!--
       <visual name="sensor_lidar_scanner_visual">
         <geometry>
           <cylinder>
@@ -576,8 +576,7 @@
           </cylinder>
         </geometry>
       </visual>
-      -->
-      <sensor name="sensor_lidar_scanner" type="gpu_ray">
+      <sensor name="sensor_lidar_scanner" type="ray">
         <always_on>1</always_on>
         <update_rate>5</update_rate>
         <visualize>0</visualize>
@@ -595,7 +594,7 @@
             <max>5.60</max>
           </range>
         </ray>
-        <plugin name='sensor_lidar_scanner_plugin' filename='libgazebo_ros_gpu_laser.so'>
+        <plugin name='sensor_lidar_scanner_plugin' filename='libgazebo_ros_laser.so'>
           <robotNamespace/>
           <topicName>sensor/lidar_scanner</topicName>
         </plugin>
@@ -605,7 +604,9 @@
       <parent>base_link</parent>
       <child>sensor_lidar_scanner_link</child>
     </joint>
+-->
 
+    <!--
     <link name="sensor_camera_link">
       <pose frame=''>0.1 0 0 0 0 0</pose>
       <self_collide>0</self_collide>
@@ -620,7 +621,6 @@
               <izz>0.0000075</izz>
           </inertia>
 			</inertial>
-      <!--
       <visual name="sensor_camera_visual">
         <geometry>
           <box>
@@ -628,7 +628,6 @@
           </box>
         </geometry>
       </visual>
-      -->
       <sensor name="sensor_camera_front" type="camera">
         <always_on>1</always_on>
         <update_rate>5</update_rate>
@@ -657,6 +656,7 @@
       <parent>base_link</parent>
       <child>sensor_camera_link</child>
     </joint>
+      -->
 
 <!--
     <link name="sensor_lidar_altitude_link">

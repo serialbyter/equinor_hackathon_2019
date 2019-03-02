@@ -41,11 +41,11 @@ class Drone(object):
         rospy.wait_for_message("mavros/local_position/pose", PoseStamped)
 
         ## Make drone less aggressive
-        #rospy.wait_for_service("mavros/param/set")
-        #mavparam = rospy.ServiceProxy('mavros/param/set', ParamSet)
-        #mavparam("MC_PITCH_P", ParamValue(0, 2.0)).success
-        #mavparam("MC_ROLL_P", ParamValue(0, 2.0)).success
-        #mavparam("MPC_VEL_XY_MAX", ParamValue(0, 4.0)).success
+        rospy.wait_for_service("mavros/param/set")
+        mavparam = rospy.ServiceProxy('mavros/param/set', ParamSet)
+        mavparam("MC_PITCH_P", ParamValue(0, 2.0)).success
+        mavparam("MC_ROLL_P", ParamValue(0, 2.0)).success
+        mavparam("MPC_XY_VEL_MAX", ParamValue(0, 3.0)).success
 
         # Send a few setpoint to make MAVROS happy
         rate = rospy.Rate(20.0)
