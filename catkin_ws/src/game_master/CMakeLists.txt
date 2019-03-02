@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   simulator
   std_msgs
+  std_srvs
   ascend_msgs
   mavros_msgs
   geometry_msgs
