@@ -60,57 +60,56 @@ int main(int argc, char* argv[]){
     const std::string csv_file = loadRequired<std::string>(nh, "csv_map");
     const std::string scorefile = loadRequired<std::string>(nh, "scorefile");
 
-    // GlobalMapService mapService = GlobalMapService(nh, csv_file);
-    // std::vector<Zone> zones = mapService.getMapHandleRef().getGoalzones();
-    // if (zones.empty()) {
-	// std::string errormsg = "No goal zones in game 1: ";
-	// errormsg += csv_file;
-    //     ROS_FATAL("%s", errormsg.c_str());
-    //     return -1;
-    // }
-    // if (zones.size() != 1) {
-	// std::string errormsg = "Multiple goal zones in game 1";
-	// errormsg += csv_file;
-    //     ROS_FATAL("%s", errormsg.c_str());
-    //     return -1;
-    // }
-    // zone = zones.front();
-    // std::pair<float, float> start = mapService.getMapHandleRef().getStartPosition();
+    GlobalMapService mapService = GlobalMapService(nh, csv_file);
+    std::vector<Zone> zones = mapService.getMapHandleRef().getGoalzones();
+    if (zones.empty()) {
+	      std::string errormsg = "No goal zones in game 1: ";
+	      errormsg += csv_file;
+        ROS_FATAL("%s", errormsg.c_str());
+        return -1;
+    }
+    if (zones.size() != 1) {
+	      std::string errormsg = "Multiple goal zones in game 1";
+	      errormsg += csv_file;
+        ROS_FATAL("%s", errormsg.c_str());
+        return -1;
+    }
+    zone = zones.front();
+    std::pair<float, float> start = mapService.getMapHandleRef().getStartPosition();
     MissionTimer timer;
     
-    // ros::Subscriber drone_state = nh->subscribe<mavros_msgs::State>("/mavros/state", 1, droneStateCallback);
-    // ros::Subscriber drone_pose = nh->subscribe<geometry_msgs::PoseStamped>("/mavros/local_position/pose", 1, dronePoseCallback);
-    // goal_pub = nh->advertise<geometry_msgs::Pose>("/goal", 1);
-    // ros::Timer pub_timer = nh->createTimer(ros::Duration(1.f), &publishGoal);
+    ros::Subscriber drone_state = nh->subscribe<mavros_msgs::State>("/mavros/state", 1, droneStateCallback);
+    ros::Subscriber drone_pose = nh->subscribe<geometry_msgs::PoseStamped>("/mavros/local_position/pose", 1, dronePoseCallback);
+    goal_pub = nh->advertise<geometry_msgs::Pose>("/goal", 1);
+    ros::Timer pub_timer = nh->createTimer(ros::Duration(1.f), &publishGoal);
 
     ros::Rate rate(0.9f);
     ROS_INFO("Waiting for mission to start");
 
-    // Wait for mission to start
-    // while (ros::ok()){
-    //     if (drone_pose_p && drone_pose_p->pose.position.z > 0.5) {
-    //         break;
-    //     }
+    //Wait for mission to start
+    while (ros::ok()){
+        if (drone_pose_p && drone_pose_p->pose.position.z > 0.5) {
+            break;
+        }
         
-    //     ros::spinOnce();
-    //     rate.sleep();
-    // }
+        ros::spinOnce();
+        rate.sleep();
+    }
     timer.start();
 
     // Wait for drone to succeed
     bool success = false;
     while (!success && ros::ok()) {
-        // const auto& pos = drone_pose_p->pose.position;
-        // if (success || zone.isInside(pos.x, pos.y)) {
-        //     ROS_INFO_THROTTLE(0.2, "Drone is inside zone");
-        //     // maybe check for more stuff here
-        //     success = true;
-        //     break;
-        // }
-        // else {
-        //     ROS_INFO_THROTTLE(0.2, "Drone is not in zone: (%f, %f)", pos.x, pos.y);
-        // }
-        success = true;
+        const auto& pos = drone_pose_p->pose.position;
+        if (success || zone.isInside(pos.x, pos.y)) {
+            ROS_INFO_THROTTLE(0.2, "Drone is inside zone");
+            // maybe check for more stuff here
+            success = true;
+            break;
+        }
+        else {
+            ROS_INFO_THROTTLE(0.2, "Drone is not in zone: (%f, %f)", pos.x, pos.y);
+        }
         ros::spinOnce();
         rate.sleep();
     }

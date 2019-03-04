@@ -6,14 +6,22 @@
   <arg name="gzweb_start" default="true"/>
   <arg name="gzweb_dir" default="$(find techathon)/../../../software/gzweb"/>
   <arg name="gzweb_port" default="8080"/>
-  <arg name="world_file" default="$(find simulator)/worlds/asphalt.world"/>
+  <arg name="world_file" default="task1_a"/>
+  <arg name="scorefile" default="$(find game_master)/scorefile1.txt"/>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="verbose" value="$(arg gz_verbose)"/>
-    <arg name="world_name" value="$(arg world_file)"/>
+    <arg name="world_name" value="$(find simulator)/worlds/$(arg world_file).world"/>
     <arg name="paused" value="false"/>
     <arg name="gui" value="false"/>
   </include>
+
+  <node name="global_map_service" pkg="game_master" type="global_map_service"/>
+
+	<node name="game_master_1" pkg="game_master" type="game_master_1" output="screen">
+		<param name="csv_map" value="$(find simulator)/csvMaps/$(arg world_file).csv"/>
+		<param name="scorefile" value="$(arg scorefile)"/>
+	</node>
 
   <include file="$(find mavros)/launch/px4.launch">
     <arg name="fcu_url" value="udp://:14540@127.0.0.1:14557"/>
