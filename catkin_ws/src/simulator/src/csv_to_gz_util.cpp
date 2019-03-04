@@ -81,9 +81,9 @@ std::string WorldTagsBefore() {
     <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>\n\
     <atmosphere type='adiabatic'/>\n\
     <physics name='default_physics' default='0' type='ode'>\n\
-      <max_step_size>0.001</max_step_size>\n\
+      <max_step_size>0.004</max_step_size>\n\
       <real_time_factor>1</real_time_factor>\n\
-      <real_time_update_rate>1000</real_time_update_rate>\n\
+      <real_time_update_rate>250</real_time_update_rate>\n\
     </physics>\n\
     <scene>\n\
       <ambient>0.4 0.4 0.4 1</ambient>\n\
@@ -153,14 +153,12 @@ std::string StartTag(int x, int y) {
     
     std::string tag = "\
     <include>\n\
-        <uri>model://drone</uri>\n\
+        <uri>model://equidrone</uri>\n\
         <pose>";
     
     tag += std::to_string(x) + ".5 " + std::to_string(y) + ".5 ";
     
     tag += "0.05 0 0 1.57</pose>\n\
-        <name>drone</name>\n\
-        <static>0</static>\n\
     </include>";
         
     return tag;

@@ -29,7 +29,7 @@ int main(int argc, char** argv){
     if (model_states_p) {
       const auto drone_state_p = std::find(model_states_p->name.cbegin(), model_states_p->name.cend(), drone_name);
       if (drone_state_p == model_states_p->name.cend()){
-        ROS_ERROR("Cant locate drone in gazebo/model_states");
+        ROS_ERROR_STREAM("Cant locate " << drone_name << " in gazebo/model_states");
         continue;
       }
       const int index = static_cast<int>(drone_state_p - model_states_p->name.cbegin()); 
