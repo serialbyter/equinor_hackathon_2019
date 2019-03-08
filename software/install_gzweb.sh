@@ -18,6 +18,7 @@ sudo apt-get update && sudo apt-get install -q -y \
   psmisc \
   xvfb
 
+pushd $HOME
 hg clone https://bitbucket.org/osrf/gzweb
 
 curl -sL https://deb.nodesource.com/setup_8.x >> setup_8.sh
@@ -32,3 +33,4 @@ source /usr/share/gazebo/setup.sh
 hg up gzweb_1.4.0
 npm run deploy --- -t -m local
 
+popd

@@ -2,6 +2,7 @@
 #include <mutex>
 #include <geometry_msgs/PoseStamped.h>
 #include <gazebo_msgs/ModelStates.h>
+#include <mavros_msgs/WaypointList.h>
 
 
 gazebo_msgs::ModelStates::ConstPtr model_states_p = nullptr;
@@ -15,11 +16,17 @@ constexpr auto drone_name = "equidrone";
 
 
 int main(int argc, char** argv){
-  ros::init(argc, argv, "mocap_node");
+  ros::init(argc, argv, "positioning_node");
 
   ros::NodeHandle n;
   ros::Subscriber sub = n.subscribe<gazebo_msgs::ModelStates>(gazebo_topic,1, &callback);
   ros::Publisher mocap_pub = n.advertise<geometry_msgs::PoseStamped>(mocap_topic, 1);
+
+  // Need to wait for mavros setup to complete
+  // TODO: can this be done in a better way, for instance by looking at mavros states?
+  ros::topic::waitForMessage<mavros_msgs::WaypointList>("mavros/mission/waypoints", ros::Duration(30.f));
+  ros::Duration(2.f).sleep();
+  ROS_INFO("Starting positioning node");
 
   ros::Rate rate(30.f);
   while (ros::ok()){
@@ -47,6 +54,4 @@ int main(int argc, char** argv){
     }
   }
 }
-
-
 

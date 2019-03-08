@@ -1,4 +1,15 @@
 #!/usr/bin/env python
+"""Example moving the drone around
+
+This code demonstrates basic control of drone.
+It shows how to setup the drone, takeoff and how
+to move it around. 
+
+How to run:
+    Make sure the simulator is running, and run the following 
+    in a separate terminal window
+    $ rosrun techathon random_movement.py
+"""
 
 import time
 import random

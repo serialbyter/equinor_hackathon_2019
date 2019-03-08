@@ -96,7 +96,12 @@ std::string WorldTagsBefore() {
       <longitude_deg>0</longitude_deg>\n\
       <elevation>0</elevation>\n\
       <heading_deg>0</heading_deg>\n\
-    </spherical_coordinates>\n";
+    </spherical_coordinates>\n\
+    \n\
+    <include>\n\
+        <uri>model://equidrone</uri>\n\
+        <pose>0 0 0.05 0 0 0</pose>\n\
+    </include>\n";
 }
 
 
@@ -335,7 +340,8 @@ int main(int argc, char* argv[]){
                 break;
             case MapCell::Type::START:
                 std::cout << "s";
-                output << StartTag(x, y) << '\n';
+                //output << StartTag(x, y) << '\n';
+                throw std::invalid_argument("start tag is depracated");
                 break;
             case MapCell::Type::GOAL:
                 std::cout << "g";

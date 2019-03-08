@@ -80,48 +80,28 @@
       <elevation>0</elevation>
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
+    
+    <include>
+        <uri>model://equidrone</uri>
+        <pose>0 0 0.05 0 0 0</pose>
+    </include>
 
 <model name="wall">
-    <pose frame=''>21.500000 0.500000 2 0 0 0</pose>
+    <pose frame=''>23.000000 0.500000 2 0 0 0</pose>
     <static>1</static>
     <self_collide>0</self_collide>
     <link name='wall-link'>
         <collision name='collision'>
             <geometry>
                 <box>
-                    <size>43 1 4</size>
+                    <size>40 1 4</size>
                 </box>
             </geometry>
         </collision>
         <visual name='visual'>
             <geometry>
                 <box>
-                    <size>43 1 4</size>
-                </box>
-            </geometry>
-            <material><script>
-                <name>Gazebo/Grey</name>
-                <uri>file://media/materials/scripts/gazebo.material</uri>
-            </script></material>
-        </visual>        <gravity>0</gravity>
-    </link>
-</model>
-<model name="wall">
-    <pose frame=''>0.500000 8.500000 2 0 0 0</pose>
-    <static>1</static>
-    <self_collide>0</self_collide>
-    <link name='wall-link'>
-        <collision name='collision'>
-            <geometry>
-                <box>
-                    <size>1 15 4</size>
-                </box>
-            </geometry>
-        </collision>
-        <visual name='visual'>
-            <geometry>
-                <box>
-                    <size>1 15 4</size>
+                    <size>40 1 4</size>
                 </box>
             </geometry>
             <material><script>
@@ -232,21 +212,21 @@
     </link>
 </model>
 <model name="wall">
-    <pose frame=''>42.500000 8.500000 2 0 0 0</pose>
+    <pose frame=''>42.500000 11.500000 2 0 0 0</pose>
     <static>1</static>
     <self_collide>0</self_collide>
     <link name='wall-link'>
         <collision name='collision'>
             <geometry>
                 <box>
-                    <size>1 15 4</size>
+                    <size>1 21 4</size>
                 </box>
             </geometry>
         </collision>
         <visual name='visual'>
             <geometry>
                 <box>
-                    <size>1 15 4</size>
+                    <size>1 21 4</size>
                 </box>
             </geometry>
             <material><script>
@@ -257,21 +237,46 @@
     </link>
 </model>
 <model name="wall">
-    <pose frame=''>24.500000 6.000000 2 0 0 0</pose>
+    <pose frame=''>24.500000 7.500000 2 0 0 0</pose>
     <static>1</static>
     <self_collide>0</self_collide>
     <link name='wall-link'>
         <collision name='collision'>
             <geometry>
                 <box>
-                    <size>1 8 4</size>
+                    <size>1 11 4</size>
                 </box>
             </geometry>
         </collision>
         <visual name='visual'>
             <geometry>
                 <box>
-                    <size>1 8 4</size>
+                    <size>1 11 4</size>
+                </box>
+            </geometry>
+            <material><script>
+                <name>Gazebo/Grey</name>
+                <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script></material>
+        </visual>        <gravity>0</gravity>
+    </link>
+</model>
+<model name="wall">
+    <pose frame=''>0.500000 12.500000 2 0 0 0</pose>
+    <static>1</static>
+    <self_collide>0</self_collide>
+    <link name='wall-link'>
+        <collision name='collision'>
+            <geometry>
+                <box>
+                    <size>1 19 4</size>
+                </box>
+            </geometry>
+        </collision>
+        <visual name='visual'>
+            <geometry>
+                <box>
+                    <size>1 19 4</size>
                 </box>
             </geometry>
             <material><script>
@@ -307,21 +312,21 @@
     </link>
 </model>
 <model name="wall">
-    <pose frame=''>9.500000 7.000000 2 0 0 0</pose>
+    <pose frame=''>9.500000 8.500000 2 0 0 0</pose>
     <static>1</static>
     <self_collide>0</self_collide>
     <link name='wall-link'>
         <collision name='collision'>
             <geometry>
                 <box>
-                    <size>1 6 4</size>
+                    <size>1 9 4</size>
                 </box>
             </geometry>
         </collision>
         <visual name='visual'>
             <geometry>
                 <box>
-                    <size>1 6 4</size>
+                    <size>1 9 4</size>
                 </box>
             </geometry>
             <material><script>
@@ -557,21 +562,21 @@
     </link>
 </model>
 <model name="wall">
-    <pose frame=''>39.500000 9.500000 2 0 0 0</pose>
+    <pose frame=''>41.000000 9.500000 2 0 0 0</pose>
     <static>1</static>
     <self_collide>0</self_collide>
     <link name='wall-link'>
         <collision name='collision'>
             <geometry>
                 <box>
-                    <size>5 1 4</size>
+                    <size>2 1 4</size>
                 </box>
             </geometry>
         </collision>
         <visual name='visual'>
             <geometry>
                 <box>
-                    <size>5 1 4</size>
+                    <size>2 1 4</size>
                 </box>
             </geometry>
             <material><script>
@@ -632,6 +637,31 @@
     </link>
 </model>
 <model name="wall">
+    <pose frame=''>12.000000 12.500000 2 0 0 0</pose>
+    <static>1</static>
+    <self_collide>0</self_collide>
+    <link name='wall-link'>
+        <collision name='collision'>
+            <geometry>
+                <box>
+                    <size>4 1 4</size>
+                </box>
+            </geometry>
+        </collision>
+        <visual name='visual'>
+            <geometry>
+                <box>
+                    <size>4 1 4</size>
+                </box>
+            </geometry>
+            <material><script>
+                <name>Gazebo/Grey</name>
+                <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script></material>
+        </visual>        <gravity>0</gravity>
+    </link>
+</model>
+<model name="wall">
     <pose frame=''>18.000000 12.500000 2 0 0 0</pose>
     <static>1</static>
     <self_collide>0</self_collide>
@@ -647,6 +677,31 @@
             <geometry>
                 <box>
                     <size>2 1 4</size>
+                </box>
+            </geometry>
+            <material><script>
+                <name>Gazebo/Grey</name>
+                <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script></material>
+        </visual>        <gravity>0</gravity>
+    </link>
+</model>
+<model name="wall">
+    <pose frame=''>27.500000 14.000000 2 0 0 0</pose>
+    <static>1</static>
+    <self_collide>0</self_collide>
+    <link name='wall-link'>
+        <collision name='collision'>
+            <geometry>
+                <box>
+                    <size>1 4 4</size>
+                </box>
+            </geometry>
+        </collision>
+        <visual name='visual'>
+            <geometry>
+                <box>
+                    <size>1 4 4</size>
                 </box>
             </geometry>
             <material><script>
@@ -707,21 +762,21 @@
     </link>
 </model>
 <model name="wall">
-    <pose frame=''>17.500000 15.500000 2 0 0 0</pose>
+    <pose frame=''>14.000000 15.500000 2 0 0 0</pose>
     <static>1</static>
     <self_collide>0</self_collide>
     <link name='wall-link'>
         <collision name='collision'>
             <geometry>
                 <box>
-                    <size>33 1 4</size>
+                    <size>26 1 4</size>
                 </box>
             </geometry>
         </collision>
         <visual name='visual'>
             <geometry>
                 <box>
-                    <size>33 1 4</size>
+                    <size>26 1 4</size>
                 </box>
             </geometry>
             <material><script>
@@ -732,21 +787,21 @@
     </link>
 </model>
 <model name="wall">
-    <pose frame=''>38.500000 15.500000 2 0 0 0</pose>
+    <pose frame=''>31.000000 15.500000 2 0 0 0</pose>
     <static>1</static>
     <self_collide>0</self_collide>
     <link name='wall-link'>
         <collision name='collision'>
             <geometry>
                 <box>
-                    <size>7 1 4</size>
+                    <size>6 1 4</size>
                 </box>
             </geometry>
         </collision>
         <visual name='visual'>
             <geometry>
                 <box>
-                    <size>7 1 4</size>
+                    <size>6 1 4</size>
                 </box>
             </geometry>
             <material><script>
@@ -756,12 +811,83 @@
         </visual>        <gravity>0</gravity>
     </link>
 </model>
-    <include>
-        <uri>model://equidrone</uri>
-        <pose>39.5 5.5 0.05 0 0 1.57</pose>
-    </include>
+<model name="wall">
+    <pose frame=''>36.000000 15.500000 2 0 0 0</pose>
+    <static>1</static>
+    <self_collide>0</self_collide>
+    <link name='wall-link'>
+        <collision name='collision'>
+            <geometry>
+                <box>
+                    <size>2 1 4</size>
+                </box>
+            </geometry>
+        </collision>
+        <visual name='visual'>
+            <geometry>
+                <box>
+                    <size>2 1 4</size>
+                </box>
+            </geometry>
+            <material><script>
+                <name>Gazebo/Grey</name>
+                <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script></material>
+        </visual>        <gravity>0</gravity>
+    </link>
+</model>
+<model name="wall">
+    <pose frame=''>41.000000 15.500000 2 0 0 0</pose>
+    <static>1</static>
+    <self_collide>0</self_collide>
+    <link name='wall-link'>
+        <collision name='collision'>
+            <geometry>
+                <box>
+                    <size>2 1 4</size>
+                </box>
+            </geometry>
+        </collision>
+        <visual name='visual'>
+            <geometry>
+                <box>
+                    <size>2 1 4</size>
+                </box>
+            </geometry>
+            <material><script>
+                <name>Gazebo/Grey</name>
+                <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script></material>
+        </visual>        <gravity>0</gravity>
+    </link>
+</model>
+<model name="wall">
+    <pose frame=''>21.500000 21.500000 2 0 0 0</pose>
+    <static>1</static>
+    <self_collide>0</self_collide>
+    <link name='wall-link'>
+        <collision name='collision'>
+            <geometry>
+                <box>
+                    <size>41 1 4</size>
+                </box>
+            </geometry>
+        </collision>
+        <visual name='visual'>
+            <geometry>
+                <box>
+                    <size>41 1 4</size>
+                </box>
+            </geometry>
+            <material><script>
+                <name>Gazebo/Grey</name>
+                <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script></material>
+        </visual>        <gravity>0</gravity>
+    </link>
+</model>
 <model name='goal'>
-            <pose frame=''>38.5 12.5 0.05 0 -0 0</pose>
+            <pose frame=''>3.5 18.5 0.05 0 -0 0</pose>
       <static>1</static>
       <link name='link'>
         <collision name='collision'>

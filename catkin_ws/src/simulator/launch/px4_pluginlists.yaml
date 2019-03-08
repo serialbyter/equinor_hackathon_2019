@@ -1,0 +1,16 @@
+plugin_blacklist:
+# common
+- safety_area
+# extras
+- image_pub
+- vibration
+- distance_sensor
+- rangefinder
+- wheel_odometry
+- odom
+- vision_pose_estimate
+
+plugin_whitelist: 
+- mocap_pose_estimate
+# 'sys_*'
+

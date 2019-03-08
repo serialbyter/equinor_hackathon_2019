@@ -4,27 +4,23 @@
 
   <arg name="gz_verbose" default="false"/>
   <arg name="gzweb_start" default="true"/>
-  <arg name="gzweb_dir" default="$(find techathon)/../../../software/gzweb"/>
+  <arg name="gzweb_dir" default="$(env HOME)/gzweb"/>
   <arg name="gzweb_port" default="8080"/>
-  <arg name="world_file" default="task1_a"/>
-  <arg name="scorefile" default="$(find game_master)/scorefile1.txt"/>
+  <arg name="world_name" default="task1small"/>
+  <arg name="scorefile" default="$(find game_master)/scorefile.txt"/>
 
-  <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="verbose" value="$(arg gz_verbose)"/>
-    <arg name="world_name" value="$(find simulator)/worlds/$(arg world_file).world"/>
-    <arg name="paused" value="false"/>
-    <arg name="gui" value="false"/>
-  </include>
 
-  <node name="global_map_service" pkg="game_master" type="global_map_service"/>
-
-	<node name="game_master_1" pkg="game_master" type="game_master_1" output="screen">
-		<param name="csv_map" value="$(find simulator)/csvMaps/$(arg world_file).csv"/>
+	<node name="game_master" pkg="game_master" type="game_master" output="screen">
+		<param name="csv_map" value="$(find simulator)/csvMaps/$(arg world_name).csv"/>
 		<param name="scorefile" value="$(arg scorefile)"/>
 	</node>
 
-  <include file="$(find mavros)/launch/px4.launch">
-    <arg name="fcu_url" value="udp://:14540@127.0.0.1:14557"/>
+<!-- Simulator backend -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="verbose" value="$(arg gz_verbose)"/>
+    <arg name="world_name" value="$(find simulator)/worlds/$(arg world_name).world"/>
+    <arg name="paused" value="false"/>
+    <arg name="gui" value="false"/>
   </include>
 
   <include file="$(find px4)/launch/px4.launch">
@@ -32,7 +28,29 @@
     <arg name="interactive" value="false"/>
   </include>
 
-  <node name="mocap_node" pkg="simulator" type="mocap_node"/>
+<!-- standard px4 launch 
+  <include file="$(find mavros)/launch/px4.launch">
+    <arg name="fcu_url" value="udp://:14540@localhost:14557"/>
+  </include>
+-->
+
+<!-- custom px4 launch  -->
+  <include file="$(find mavros)/launch/node.launch">
+		<arg name="pluginlists_yaml" value="$(find simulator)/launch/px4_pluginlists.yaml" />
+		<arg name="config_yaml" value="$(find simulator)/launch/px4_config.yaml" />
+    <arg name="fcu_url" value="udp://:14540@localhost:14557"/>
+
+		<arg name="gcs_url" value="" />
+    <arg name="tgt_system" value="1" />
+    <arg name="tgt_component" value="1" />
+    <arg name="log_output" value="screen" />
+    <arg name="fcu_protocol" value="v2.0" />
+    <arg name="respawn_mavros" value="false" />
+  </include>
+
+<!--
+  <node name="positioning_node" pkg="simulator" type="mocap_node" output="screen"/>
+-->
 
   <node if="$(arg gzweb_start)" respawn="true" name="gzweb_node" pkg="simulator" type="start_gzweb.sh" args="$(arg gzweb_dir) $(arg gzweb_port)"/>
 </launch>

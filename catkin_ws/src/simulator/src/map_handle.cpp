@@ -97,7 +97,7 @@ std::pair<float,float> MapHandle::getStartPosition() const {
         }
     }
     
-    throw std::invalid_argument("Couldn't locate endzone in map");
+    throw std::invalid_argument("Couldn't locate startzone in map");
 
 }
 

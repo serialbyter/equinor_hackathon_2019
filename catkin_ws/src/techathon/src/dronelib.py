@@ -2,9 +2,12 @@
 
 from __future__ import print_function
 
+from math import atan2
+
 import time
 
 import rospy
+import tf.transformations
 from mavros_msgs.msg import PositionTarget, State, ParamValue
 from mavros_msgs.srv import CommandBool, SetMode, ParamSet
 from geometry_msgs.msg import PoseStamped
@@ -19,6 +22,7 @@ _LOITER = 0x3000
 _IDLE = 0x4000
 del pt
 
+
 class Drone(object):
     def __init__(self):
         # Communication variables
@@ -29,9 +33,9 @@ class Drone(object):
 
         # ROS Communication
         self._setpoint_pub = rospy.Publisher("mavros/setpoint_raw/local",
-                                   PositionTarget, queue_size=1)
+                                             PositionTarget, queue_size=1)
         self._pose_sub = rospy.Subscriber("mavros/local_position/pose",
-                                    PoseStamped, self._pose_cb)
+                                          PoseStamped, self._pose_cb)
 
         self._state_sub = rospy.Subscriber('mavros/state',
                                            State, self._state_cb)
@@ -40,7 +44,7 @@ class Drone(object):
         rospy.logdebug("Waiting for MAVROS to start")
         rospy.wait_for_message("mavros/local_position/pose", PoseStamped)
 
-        ## Make drone less aggressive
+        # Make drone less aggressive
         rospy.wait_for_service("mavros/param/set")
         mavparam = rospy.ServiceProxy('mavros/param/set', ParamSet)
         mavparam("MC_PITCH_P", ParamValue(0, 2.0)).success
@@ -53,10 +57,8 @@ class Drone(object):
             rate.sleep()
             self._publish_setpoint(None)
 
-
         rospy.Timer(rospy.Duration(0.05), self._publish_setpoint)
         rospy.loginfo("Drone Initialized")
-
 
     # -------------------
     # ------ <API> ------
@@ -76,14 +78,15 @@ class Drone(object):
 
             rate.sleep()
 
-    def takeoff(self, height = 5.0):
+    def takeoff(self, height=3.0):
         """
         Send takeoff setpoints at current position.
         """
         self._setpoint_msg.position.x = self._last_pose.pose.position.x
         self._setpoint_msg.position.y = self._last_pose.pose.position.y
         self._setpoint_msg.position.z = height
-        self._setpoint_msg.type_mask = _DEFAULT #| _TAKEOFF
+        self._setpoint_msg.type_mask = _DEFAULT  # | _TAKEOFF
+
 
     def set_target(self, x, y, yaw):
         """
@@ -100,10 +103,23 @@ class Drone(object):
         """
         return self._last_pose.pose
 
+    @property
+    def position(self):
+        """
+        Returns position of drone.
+        """
+        return self._last_pose.pose.position
+
+    @property
+    def yaw(self):
+        """
+        Returns yaw of drone
+        """
+        return self._get_yaw()
+
     # -------------------
     # ----- </API> ------
     # -------------------
-
 
     # -----------------------
     # ----- <Internal> ------
@@ -128,7 +144,13 @@ class Drone(object):
         self._setpoint_msg.header.frame_id = "map"
         self._setpoint_pub.publish(self._setpoint_msg)
 
+    def _get_yaw(self):
+        q = self._last_pose.pose.orientation
+        quat = (q.x, q.y, q.z, q.w)
+        euler = tf.transformations.euler_from_quaternion(quat)
+        yaw = euler[2]
+        return yaw
+
     # ------------------------
     # ----- </Internal> ------
     # ------------------------
-

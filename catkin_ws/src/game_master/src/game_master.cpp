@@ -30,13 +30,13 @@ T loadRequired(std::shared_ptr<ros::NodeHandle> nh, const std::string& param) {
 };
 
 
-geometry_msgs::PoseStamped::ConstPtr drone_pose_p;
 
 
 void droneStateCallback(mavros_msgs::State::ConstPtr msg) {
 
 }
 
+geometry_msgs::PoseStamped::ConstPtr drone_pose_p;
 void dronePoseCallback(geometry_msgs::PoseStamped::ConstPtr msg) {
     drone_pose_p = msg;
 }
@@ -52,7 +52,7 @@ void publishGoal(const ros::TimerEvent& e) {
 }
 
 int main(int argc, char* argv[]){
-    ros::init(argc, argv, "game_master_1");
+    ros::init(argc, argv, "game_master");
     std::shared_ptr<ros::NodeHandle> nh = std::make_shared<ros::NodeHandle>("~");
 
     ros::ServiceClient client = nh->serviceClient<std_srvs::Empty>("/publish_scores");
@@ -63,19 +63,18 @@ int main(int argc, char* argv[]){
     GlobalMapService mapService = GlobalMapService(nh, csv_file);
     std::vector<Zone> zones = mapService.getMapHandleRef().getGoalzones();
     if (zones.empty()) {
-	      std::string errormsg = "No goal zones in game 1: ";
+	      std::string errormsg = "No goal zones: ";
 	      errormsg += csv_file;
         ROS_FATAL("%s", errormsg.c_str());
         return -1;
     }
     if (zones.size() != 1) {
-	      std::string errormsg = "Multiple goal zones in game 1";
+	      std::string errormsg = "Multiple goal zones: ";
 	      errormsg += csv_file;
         ROS_FATAL("%s", errormsg.c_str());
         return -1;
     }
     zone = zones.front();
-    std::pair<float, float> start = mapService.getMapHandleRef().getStartPosition();
     MissionTimer timer;
     
     ros::Subscriber drone_state = nh->subscribe<mavros_msgs::State>("/mavros/state", 1, droneStateCallback);
@@ -83,7 +82,7 @@ int main(int argc, char* argv[]){
     goal_pub = nh->advertise<geometry_msgs::Pose>("/goal", 1);
     ros::Timer pub_timer = nh->createTimer(ros::Duration(1.f), &publishGoal);
 
-    ros::Rate rate(0.9f);
+    ros::Rate rate(1.f);
     ROS_INFO("Waiting for mission to start");
 
     //Wait for mission to start
@@ -98,17 +97,21 @@ int main(int argc, char* argv[]){
     timer.start();
 
     // Wait for drone to succeed
+    double max_z = drone_pose_p->pose.position.z;
     bool success = false;
     while (!success && ros::ok()) {
         const auto& pos = drone_pose_p->pose.position;
+
+        max_z = std::max(max_z, pos.z);
+
         if (success || zone.isInside(pos.x, pos.y)) {
-            ROS_INFO_THROTTLE(0.2, "Drone is inside zone");
+            ROS_INFO("Drone is inside zone");
             // maybe check for more stuff here
             success = true;
             break;
         }
         else {
-            ROS_INFO_THROTTLE(0.2, "Drone is not in zone: (%f, %f)", pos.x, pos.y);
+            ROS_INFO_THROTTLE(0.1, "Drone is not in zone: (%f, %f)", pos.x, pos.y);
         }
         ros::spinOnce();
         rate.sleep();
