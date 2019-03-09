@@ -11,8 +11,8 @@
 
 class MapCell {
     public:
-        enum class Type { EMPTY, START, GOAL, WALL, OBJECT, DYNAMIC_OBSTACLE };
-
+        enum class Type { EMPTY, START, GOAL, WALL, OBJECT, BOOST, DYNAMIC_OBSTACLE};
+        
         MapCell() = delete;
         MapCell(Type type, int num = 0);
         MapCell(const std::string& desc);
@@ -37,7 +37,7 @@ class MapHandle {
         
         std::vector<Zone> getGoalzones() const;
         std::pair<float,float> getStartPosition() const;
-
+        std::vector<Zone> getBoostZones() const;
         ascend_msgs::Map createMapMessage() const;
 };
 

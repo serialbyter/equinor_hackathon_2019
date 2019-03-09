@@ -86,6 +86,27 @@ std::vector<Zone> MapHandle::getGoalzones() const {
     return zones;
 }
 
+std::vector<Zone> MapHandle::getBoostZones() const{
+    std::vector<Zone> boostZones;
+
+    for (int y = 0; y < map_vector_.size(); y++){
+        const auto &col = map_vector_.at(y);
+        for (int x = 0; x < col.size(); x++) {
+            if (col.at(x).getType() == MapCell::Type::BOOST)
+            {
+                Zone z;
+                z.setZoneBox(
+                    static_cast<float>(x) + 0.5 - 1.0, // x_min
+                    static_cast<float>(y) + 0.5 - 1.0, // y_min
+                    static_cast<float>(x) + 0.5 + 1.0, // x_max
+                    static_cast<float>(y) + 0.5 + 1.0  // y_max
+                );
+                boostZones.push_back(z);
+            }
+        }
+    }
+    return boostZones;
+}
 
 std::pair<float,float> MapHandle::getStartPosition() const {
     for (int y = 0; y < map_vector_.size(); y++) {
@@ -153,6 +174,9 @@ MapCell::MapCell(const std::string& desc) {
         }
         else if (desc == "s") {
             type_ = Type::START;
+        }
+        else if (desc == "b"){
+            type_ = Type::BOOST;
         }
         else if (desc == "d") {
           type_ = Type::DYNAMIC_OBSTACLE;
