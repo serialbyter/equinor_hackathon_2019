@@ -72,6 +72,15 @@
       <ambient>0.4 0.4 0.4 1</ambient>
       <background>0.7 0.7 0.7 1</background>
       <shadows>1</shadows>
+      <sky>
+        <clouds>
+          <speed>0.6</speed>
+          <direction>0</direction>
+          <humidity>0.5</humidity>
+          <mean_size>0.5</mean_size>
+          <ambient>0.8 0.8 0.8 1</ambient>
+        </clouds>
+      </sky>
     </scene>
     <spherical_coordinates>
       <surface_model>EARTH_WGS84</surface_model>

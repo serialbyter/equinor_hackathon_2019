@@ -89,6 +89,15 @@ std::string WorldTagsBefore() {
       <ambient>0.4 0.4 0.4 1</ambient>\n\
       <background>0.7 0.7 0.7 1</background>\n\
       <shadows>1</shadows>\n\
+      <sky>\n\
+        <clouds>\n\
+          <speed>0.6</speed>\n\
+          <direction>0</direction>\n\
+          <humidity>0.5</humidity>\n\
+          <mean_size>0.5</mean_size>\n\
+          <ambient>0.8 0.8 0.8 1</ambient>\n\
+        </clouds>\n\
+      </sky>\n\
     </scene>\n\
     <spherical_coordinates>\n\
       <surface_model>EARTH_WGS84</surface_model>\n\
@@ -102,6 +111,19 @@ std::string WorldTagsBefore() {
         <uri>model://equidrone</uri>\n\
         <pose>0 0 0.05 0 0 0</pose>\n\
     </include>\n";
+}
+
+std::string DynamicObstacleTag(int x, int y) {
+    std::string tag = "\
+    <include>\n\
+        <uri>model://dynamic_obstacle</uri>\n\
+        <name>dynamic_obstacle" + std::to_string(x) + std::to_string(y) + "</name>\n\
+        <pose>";
+    tag += std::to_string(x) + ".5 " + std::to_string(y) + ".5 ";
+    tag += "2 0 0 1.57</pose>\n\
+    </include>";
+        
+    return tag;
 }
 
 
@@ -210,38 +232,6 @@ std::string NumberTag(int x, int y, int num) {
     tag += std::to_string(y) + ".5 ";
     tag += "2 0 -0 0</pose>\n\
     </include>\n";
-    
-    return tag;
-}
-
-std::string Number4Tag(int x, int y) {
-    std::string tag =  "<model name='number4'>\n\
-            <pose frame=''>";
-    tag += std::to_string(x) + ".5 ";
-    tag += std::to_string(y) + ".5 ";
-    tag += "0.4 0 -0 0</pose>\n\
-      <static>1</static>\n\
-      <link name='link'>\n\
-        <visual name='visual'>\n\
-          <geometry>\n\
-            <mesh>\n\
-              <uri>model://number1/meshes/number.dae</uri>\n\
-              <scale>1 1 1</scale>\n\
-            </mesh>\n\
-          </geometry>\n\
-          <material>\n\
-            <script>\n\
-              <uri>model://number4/materials/scripts</uri>\n\
-              <uri>model://number4/materials/textures</uri>\n\
-              <name>Number/Four</name>\n\
-            </script>\n\
-          </material>\n\
-        </visual>\n\
-        <self_collide>0</self_collide>\n\
-        <kinematic>0</kinematic>\n\
-        <gravity>1</gravity>\n\
-      </link>\n\
-    </model>";
     
     return tag;
 }
@@ -356,6 +346,10 @@ int main(int argc, char* argv[]){
                     std::cout << '?';
                     print_warning = true;
                 }
+                break;
+            case MapCell::Type::DYNAMIC_OBSTACLE:
+                std::cout << 'd';
+                output << DynamicObstacleTag(x,y) << '\n';
                 break;
             case MapCell::Type::EMPTY:
                 std::cout << " ";

@@ -1,0 +1,25 @@
+<sdf version="1.6">
+  <model name="dynamic_obstacle">
+    <link name="base">
+      <gravity>false</gravity>
+      <collision name="collision">
+        <geometry>
+          <box>
+            <size>0.90 0.90 0.90</size>
+          </box>
+        </geometry>
+      </collision>
+      <visual name="visual">
+        <geometry>
+          <sphere>
+            <radius>0.45</radius>
+          </sphere>
+        </geometry>
+      </visual>
+    </link>
+    <plugin name="dynamic_obstacle" filename="libdynamic_obstacle.so">
+      <speed>1</speed>
+      <altitude>2</altitude>
+    </plugin>
+  </model>
+</sdf>

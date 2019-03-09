@@ -154,6 +154,9 @@ MapCell::MapCell(const std::string& desc) {
         else if (desc == "s") {
             type_ = Type::START;
         }
+        else if (desc == "d") {
+          type_ = Type::DYNAMIC_OBSTACLE;
+        }
         else {
             const std::string errormsg = "No matching cell for: " + desc;
             throw std::invalid_argument(errormsg); 

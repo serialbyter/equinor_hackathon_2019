@@ -11,7 +11,7 @@
 
 class MapCell {
     public:
-        enum class Type { EMPTY, START, GOAL, WALL, OBJECT };
+        enum class Type { EMPTY, START, GOAL, WALL, OBJECT, DYNAMIC_OBSTACLE };
 
         MapCell() = delete;
         MapCell(Type type, int num = 0);
