@@ -36,6 +36,10 @@ T loadRequired(std::shared_ptr<ros::NodeHandle> nh, const std::string& param) {
     throw std::exception();
 };
 
+void droneStateCallback(mavros_msgs::State::ConstPtr msg) {
+
+}
+
 geometry_msgs::PoseStamped::ConstPtr drone_pose_p;
 void dronePoseCallback(geometry_msgs::PoseStamped::ConstPtr msg) {
     drone_pose_p = msg;

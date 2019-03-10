@@ -63,7 +63,6 @@ def main():
 
     # Initialize drone
     drone = Drone()
-    drone.activate()
     drone.takeoff()
 
     # -- For example code --

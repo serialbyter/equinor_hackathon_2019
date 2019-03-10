@@ -82,6 +82,7 @@ class Drone(object):
         """
         Send takeoff setpoints at current position.
         """
+        self.activate()
         self._setpoint_msg.position.x = self._last_pose.pose.position.x
         self._setpoint_msg.position.y = self._last_pose.pose.position.y
         self._setpoint_msg.position.z = height
