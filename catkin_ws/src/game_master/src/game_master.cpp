@@ -140,7 +140,7 @@ int main(int argc, char* argv[]){
             break;
         }
         else {
-            ROS_INFO_THROTTLE(0.1, "Drone is not in zone: (%f, %f)", pos.x, pos.y);
+            ROS_INFO_THROTTLE(30, "Drone is not in zone: (%f, %f)", pos.x, pos.y);
         }
 
         for(auto it=boosts.begin(); it!=boosts.end(); it++){

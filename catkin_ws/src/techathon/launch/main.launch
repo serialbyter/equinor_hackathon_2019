@@ -6,7 +6,7 @@
   <arg name="gzweb_start" default="true"/>
   <arg name="gzweb_dir" default="$(env HOME)/gzweb"/>
   <arg name="gzweb_port" default="8080"/>
-  <arg name="world_name" default="task1small"/>
+  <arg name="world_name" default="static"/>
   <arg name="scorefile" default="$(find game_master)/scorefile.txt"/>
 
 
