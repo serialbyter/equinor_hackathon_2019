@@ -36,12 +36,11 @@ def main():
     rate = rospy.Rate(0.1)
     while not rospy.is_shutdown():
         # generate some random point and rotation
-        x = random.randint(-5, 5)
-        y = random.randint(-5, 5)
-        yaw = random.randint(0, 7)
+        x = random.randint(-3, 3)
+        y = random.randint(-3, 3)
 
         # move to random point
-        drone.set_target(x, y, yaw)
+        drone.set_target(x, y)
 
         # control rate of loop
         rate.sleep()

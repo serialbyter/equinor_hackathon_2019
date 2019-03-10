@@ -88,7 +88,7 @@ class Drone(object):
         self._setpoint_msg.type_mask = _DEFAULT  # | _TAKEOFF
 
 
-    def set_target(self, x, y, yaw):
+    def set_target(self, x, y, yaw=0):
         """
         Set the position and yaw target.
         """

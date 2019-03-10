@@ -11,13 +11,16 @@ from dronelib import Drone
 from util import parse_map
 
 from ascend_msgs.srv import GlobalMap
-from geometry_msgs.msg import Pose
+from geometry_msgs.msg import Pose, PoseArray
 
 
 def goal_callback(msg):
     global goal
     goal = msg.position
 
+def dynamic_obstacles_callback(msg):
+    global dynamic_obstacles
+    dynamic_obstacles = msg
 
 def main():
 
@@ -40,6 +43,10 @@ def main():
     # Get map as 2D list
     world_map = parse_map(raw_map)
 
+    # Create subscriber for dynamic obstacles
+    rospy.Subscriber("/dynamic_obstacles", PoseArray, dynamic_obstacles_callback)
+    dynamic_obstacles = rospy.wait_for_message("/dynamic_obstacles", PoseArray)
+
     # Initialize drone
     drone = Drone()
     drone.activate()
@@ -48,7 +55,6 @@ def main():
     # --For example code--
     target_x = 0
     target_y = 0
-    target_yaw = 0
 
     rate = rospy.Rate(30)
     while not rospy.is_shutdown():
@@ -57,15 +63,12 @@ def main():
         # ------Replace this example-----
         # ---------with your code!-------
         # -------------------------------
-
         # Find how far we are away from target
         distance_to_target = ((target_x - drone.position.x)**2 +
                               (target_y - drone.position.y)**2)**0.5
-        angle_to_target = target_yaw - drone.yaw
-        angle_to_target = (angle_to_target + math.pi) % (2*math.pi) - math.pi # map angle between -pi and pi
 
         # Do special action if we are close
-        if distance_to_target < 0.5 and angle_to_target < 0.1:
+        if distance_to_target < 0.5:
             # Print Current distance to goal
             distance_to_goal = ((drone.position.x - goal.x)**2 +
                                 (drone.position.y - goal.y)**2)**0.5
@@ -73,14 +76,13 @@ def main():
             print("Distance to goal is now", distance_to_goal)
 
             # Generate some random point and rotation
-            target_x = random.randint(-5, 5)
-            target_y = random.randint(-5, 5)
-            target_yaw = random.randint(0, 7)  # in radians
+            target_x = random.randint(-3, 3)
+            target_y = random.randint(-3, 3)
 
             # Move to random point
-            drone.set_target(target_x, target_y, target_yaw)
+            drone.set_target(target_x, target_y)
         else:
-            print("distance to target:", distance_to_target, "angle_to_target", angle_to_target)
+            print("distance to target:", distance_to_target)
 
 
 if __name__ == '__main__':

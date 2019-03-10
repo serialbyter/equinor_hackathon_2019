@@ -25,17 +25,17 @@ def main():
     drone = Drone()
     drone.activate()
 
-    # Takeoff and override default takeoff height (5 meters)
-    drone.takeoff(height=3.0)
+    # Takeoff and override default takeoff height (3 meters)
+    drone.takeoff(height=2.0)
 
     # Monitor takeoff and dont progress until we are high enough
     rate = rospy.Rate(1.0)
-    while  not rospy.is_shutdown():
+    while not rospy.is_shutdown():
         # Control rate of while loop
         rate.sleep()
         
         # Monitor height
-        if drone.position.z > 2.5:
+        if drone.position.z > 1.5:
             break
 
 
@@ -43,12 +43,11 @@ def main():
 
     ## Takeoff completed, do something useful
     # Generate some random point
-    x = random.randint(-5, 5)
-    y = random.randint(-5, 5)
-    yaw = random.randint(0, 7)
+    x = random.randint(-3, 3)
+    y = random.randint(-3, 3)
 
     # Move to random point
-    drone.set_target(x, y, yaw)
+    drone.set_target(x, y)
 
 
 if __name__=="__main__":
