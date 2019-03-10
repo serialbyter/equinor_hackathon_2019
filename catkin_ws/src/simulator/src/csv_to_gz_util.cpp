@@ -351,6 +351,9 @@ int main(int argc, char* argv[]){
                 std::cout << 'd';
                 output << DynamicObstacleTag(x,y) << '\n';
                 break;
+            case MapCell::Type::BOOST:
+                std::cout << "b";
+                break;
             case MapCell::Type::EMPTY:
                 std::cout << " ";
                 break;

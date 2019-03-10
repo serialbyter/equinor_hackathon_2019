@@ -23,7 +23,6 @@ def main():
 
     # Create drone, activate it and send takeoff command
     drone = Drone()
-    drone.activate()
 
     # Takeoff and override default takeoff height (3 meters)
     drone.takeoff(height=2.0)
@@ -37,7 +36,6 @@ def main():
         # Monitor height
         if drone.position.z > 1.5:
             break
-
 
     print("Takeoff complete")
 

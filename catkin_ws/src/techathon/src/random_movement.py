@@ -24,10 +24,7 @@ def main():
     # Create a drone object, sets up necessary connections to simulator
     drone = Drone()
 
-    # Arm the drone, which allows it to receive commands
-    drone.activate()
-
-    # Takeoff to default height setpoint
+    # Takeoff
     drone.takeoff()
 
     # Assume takeoff takes less than 5 seconds
