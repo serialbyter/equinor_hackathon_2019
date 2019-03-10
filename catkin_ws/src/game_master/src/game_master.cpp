@@ -168,7 +168,13 @@ int main(int argc, char* argv[]){
     timer.stop();
     ros::Duration duration = timer.getDuration();
 
-    ROS_INFO_COND(success, "Success! Duration: %f", duration.toSec());
+    if(max_z < 3.5){
+        ROS_INFO_COND(success , "Success! Duration: %f", duration.toSec());
+    }
+    else{
+        success = false;
+    }
+
     ROS_INFO_COND(!success, "Duration: %f", duration.toSec());
 
     if(success){

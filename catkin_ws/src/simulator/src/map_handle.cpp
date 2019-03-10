@@ -96,10 +96,10 @@ std::vector<Zone> MapHandle::getBoostZones() const{
             {
                 Zone z;
                 z.setZoneBox(
-                    static_cast<float>(x) + 0.5 - 1.0, // x_min
-                    static_cast<float>(y) + 0.5 - 1.0, // y_min
-                    static_cast<float>(x) + 0.5 + 1.0, // x_max
-                    static_cast<float>(y) + 0.5 + 1.0  // y_max
+                    static_cast<float>(x) + 0.5 - 2.0, // x_min
+                    static_cast<float>(y) + 0.5 - 2.0, // y_min
+                    static_cast<float>(x) + 0.5 + 2.0, // x_max
+                    static_cast<float>(y) + 0.5 + 2.0  // y_max
                 );
                 boostZones.push_back(z);
             }

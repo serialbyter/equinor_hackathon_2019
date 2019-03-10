@@ -20,7 +20,6 @@ def add_new_scores_to_db(req):
 
     if not scores['Sent'].all():
         update = scores[scores['Sent']==0]['Score'].values.tolist()
-        print(update)
         result = requests.post(
             'https://europe-west1-hackathon-af6d5.cloudfunctions.net/addScore',
                 data = {'team':team, 'score':update})
