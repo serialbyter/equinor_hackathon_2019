@@ -8,7 +8,7 @@ import time
 
 import rospy
 import tf.transformations
-from mavros_msgs.msg import PositionTarget, State, ParamValue
+from mavros_msgs.msg import PositionTarget, State, ParamValue, WaypointList
 from mavros_msgs.srv import CommandBool, SetMode, ParamSet
 from geometry_msgs.msg import PoseStamped
 from std_msgs.msg import Header
@@ -42,7 +42,7 @@ class Drone(object):
 
         # wait for mavros to start publishing
         rospy.logdebug("Waiting for MAVROS to start")
-        rospy.wait_for_message("mavros/local_position/pose", PoseStamped)
+        rospy.wait_for_message("mavros/mission/waypoints", WaypointList)
 
         # Make drone less aggressive
         rospy.wait_for_service("mavros/param/set")

@@ -8,7 +8,7 @@ import random
 import math
 
 from dronelib import Drone
-from util import parse_map
+import util
 
 from ascend_msgs.srv import GlobalMap
 from geometry_msgs.msg import Pose, PoseArray
@@ -19,16 +19,26 @@ def goal_callback(msg):
     goal = msg.position
 
 def dynamic_obstacles_callback(msg):
-    global dynamic_obstacles
-    dynamic_obstacles = msg
+    global obstacles
+    obstacles = msg.poses
+
+def boost_callback(msg):
+    global boosts
+    boosts = msg.poses
 
 def main():
-
     # Init ROS node
     rospy.init_node('task', anonymous=True)
 
-    # Create subscriber for position and goal
+    # Create subscriber for position, goal, boost points, and obstacles
     rospy.Subscriber('/goal', Pose, goal_callback)
+    rospy.Subscriber('/boost', PoseArray, boost_callback)
+    rospy.Subscriber("/dynamic_obstacles", PoseArray, dynamic_obstacles_callback)
+
+    # Wait for resources to become active
+    goal = rospy.wait_for_message("/goal", Pose).position
+    boosts = rospy.wait_for_message("/boost", PoseArray).poses
+    obstacles = rospy.wait_for_message("/dynamic_obstacles", PoseArray).poses
 
     # Create map service client
     getMap = rospy.ServiceProxy('/GlobalMap', GlobalMap)
@@ -41,18 +51,22 @@ def main():
         return
 
     # Get map as 2D list
-    world_map = parse_map(raw_map)
+    world_map = util.parse_map(raw_map)
 
-    # Create subscriber for dynamic obstacles
-    rospy.Subscriber("/dynamic_obstacles", PoseArray, dynamic_obstacles_callback)
-    dynamic_obstacles = rospy.wait_for_message("/dynamic_obstacles", PoseArray)
+    # Print resources
+    print("Wall layout:")
+    util.print_map(world_map)
+    print("Boost points:")
+    util.print_positions(boosts)
+    print("Obstacles at start:")
+    util.print_positions(obstacles)
 
     # Initialize drone
     drone = Drone()
     drone.activate()
     drone.takeoff()
 
-    # --For example code--
+    # -- For example code --
     target_x = 0
     target_y = 0
 
@@ -69,7 +83,8 @@ def main():
 
         # Do special action if we are close
         if distance_to_target < 0.5:
-            # Print Current distance to goal
+            # Print current distance to goal. Note that we 
+            # wont reach the goal, since we just move randomly
             distance_to_goal = ((drone.position.x - goal.x)**2 +
                                 (drone.position.y - goal.y)**2)**0.5
 
