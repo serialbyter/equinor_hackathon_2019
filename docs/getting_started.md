@@ -56,7 +56,7 @@ Go to `www.github.com`. In the top right corner there should be a `+`. Click thi
 
 2. Give your repository a name and decide if you want it to be public or private. Click create repository.
 
-If you decided to have a private repository note that you'll have to create a personal access token to interact with the repository from the virtual machine. [A guide to doing this can be found here](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line]).
+If you decided to have a private repository note that you'll have to create a personal access token to interact with the repository from the virtual machine. [A guide to doing this can be found here](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line).
 
 3. Follow the "…or create a new repository on the command line" instructions. **Important:** use `git add .` instead of `git add README.md`.
 
