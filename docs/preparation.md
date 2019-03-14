@@ -25,7 +25,7 @@ For ssh we recommend using PuTTY wich can be installed from the [official websit
 
 If you don't have Git, simply run `git status` in a terminal and you will get an install wizard for setting up git. Installing SSH shouldn't be necessary.
 
-### Ubuntu
+### Linux
 
 On most computers, Git and SSH will already by enabled and set up.
 To verify that they are installed, open up a terminal window and run the following commands.
@@ -35,6 +35,8 @@ git --version
 ```
 If you get `command not found` when running `ssh`, run the command `sudo apt install openssh-client`.
 If you get `command not found` when running `git --version`, run the command `sudo apt install git`. 
+
+On Red-Hat/CentOS use `yum` instead of apt in the above commands.
 
 ## Necessary skills
 The challenge does not require very advanced programming skills, but some skills
