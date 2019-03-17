@@ -3,9 +3,9 @@
 This guide will guide you through setting up the project. To do this we will go through 3 steps.
 
 1. Connect to the virtual machine on Azure.
-2. Setup a github repository.
-3. Run the simulator and an example script.
-
+2. Setup team name.
+3. Setup a github repository.
+4. Run the simulator and an example script.
 
 ## Connecting to your virtual machine
 
@@ -37,16 +37,27 @@ Your team should have received an address and a password to the virtual machine(
 
 ---
 
+You should now be prompted to change the server password. This will be your new team password! Follow the instructions in the console.
+
 If your command line starts with `techathon@<server-name>:~/equinor_hackathon_2019/catkin_ws/src/techathon/src$` your terminal is now running on the virtual machine! Note that no matter what your computer is running, this connected terminal is running Ubuntu 18.
 
-
-##  Setup a github repository.
+## Set your team name
 
 The steps that follow assume that you have completed the above and are in the VM terminal with the starting line `techathon@<server-name>:~/equinor_hackathon_2019/catkin_ws/src/techathon/src$`. 
 
 Type `ls` into the terminal and you should see that we have left a few files to help you along the way.
 
-To coordinate work with your group and to transfer code from your computer to the VM you will use Github. The next few steps will explain how to create a repository containing the scripts we provide.
+The first thing you need to do is to decide a team name. This will be set in `teamfile.yaml`. To change the name we will use the commandline editor Nano. Nano allows you to edit text using the standard keyboard interface.
+
+1. Open the file by typing `nano teamfile.yaml`
+2. You should now see `name: dreamteamsupremeteam`.
+3. Replace `dreamteamsupremeteam` with your team name.
+4. Press `ctrl + o` and then `enter` to save your changes.
+5. Press `ctrl + x` to exit.
+
+## Setup a github repository.
+
+To coordinate work with your group and to transfer code from your computer to the VM you will use Github. The next few steps will explain how to create a repository containing the scripts we provide. Note you should still be in `techathon@<server-name>:~/equinor_hackathon_2019/catkin_ws/src/techathon/src$`.
 
 1. Create a new repository
 
