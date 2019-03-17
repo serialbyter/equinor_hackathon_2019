@@ -113,14 +113,14 @@ std::string WorldTagsBefore() {
     </include>\n";
 }
 
-std::string DynamicObstacleTag(int x, int y) {
+std::string DynamicObstacleTag(int x, int y, int z) {
     std::string tag = "\
     <include>\n\
         <uri>model://dynamic_obstacle</uri>\n\
         <name>dynamic_obstacle" + std::to_string(x) + std::to_string(y) + "</name>\n\
         <pose>";
-    tag += std::to_string(x) + ".5 " + std::to_string(y) + ".5 ";
-    tag += "2 0 0 1.57</pose>\n\
+    tag += std::to_string(x) + ".5 " + std::to_string(y) + ".5 " + std::to_string(z);
+    tag += " 0 0 1.57</pose>\n\
     </include>";
         
     return tag;
@@ -227,6 +227,18 @@ std::string GoalTag(int x, int y) {
 std::string NumberTag(int x, int y, int num) {
     std::string tag =  "<include>\n\
         \t<uri>model://numberbox" + std::to_string(num) + "</uri>\n\
+        \t<pose frame=''>";
+    tag += std::to_string(x) + ".5 ";
+    tag += std::to_string(y) + ".5 ";
+    tag += "2 0 -0 0</pose>\n\
+    </include>\n";
+    
+    return tag;
+}
+
+std::string BoostTag(int x, int y) {
+    std::string tag =  "<include>\n\
+        \t<uri>model://boostbox</uri>\n\
         \t<pose frame=''>";
     tag += std::to_string(x) + ".5 ";
     tag += std::to_string(y) + ".5 ";
@@ -346,13 +358,15 @@ int main(int argc, char* argv[]){
                     std::cout << '?';
                     print_warning = true;
                 }
+                throw std::invalid_argument("object tag is depracated");
                 break;
             case MapCell::Type::DYNAMIC_OBSTACLE:
                 std::cout << 'd';
-                output << DynamicObstacleTag(x,y) << '\n';
+                output << DynamicObstacleTag(x,y, 1 + (rand() % 3)) << '\n';
                 break;
             case MapCell::Type::BOOST:
                 std::cout << "b";
+                output << BoostTag(x,y) << '\n';
                 break;
             case MapCell::Type::EMPTY:
                 std::cout << " ";

@@ -358,7 +358,7 @@
     <include>
         <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle154</name>
-        <pose>15.5 4.5 2 0 0 1.57</pose>
+        <pose>15.5 4.5 1 0 0 1.57</pose>
     </include>
     <include>
         <uri>model://dynamic_obstacle</uri>
@@ -368,7 +368,7 @@
     <include>
         <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle206</name>
-        <pose>20.5 6.5 2 0 0 1.57</pose>
+        <pose>20.5 6.5 3 0 0 1.57</pose>
     </include>
     <include>
         <uri>model://dynamic_obstacle</uri>
@@ -383,12 +383,12 @@
     <include>
         <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle169</name>
-        <pose>16.5 9.5 2 0 0 1.57</pose>
+        <pose>16.5 9.5 1 0 0 1.57</pose>
     </include>
     <include>
         <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle289</name>
-        <pose>28.5 9.5 2 0 0 1.57</pose>
+        <pose>28.5 9.5 1 0 0 1.57</pose>
     </include>
     <include>
         <uri>model://dynamic_obstacle</uri>
@@ -398,7 +398,7 @@
     <include>
         <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle2111</name>
-        <pose>21.5 11.5 2 0 0 1.57</pose>
+        <pose>21.5 11.5 3 0 0 1.57</pose>
     </include>
     <include>
         <uri>model://dynamic_obstacle</uri>
@@ -408,7 +408,7 @@
     <include>
         <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle2713</name>
-        <pose>27.5 13.5 2 0 0 1.57</pose>
+        <pose>27.5 13.5 3 0 0 1.57</pose>
     </include>
     <include>
         <uri>model://dynamic_obstacle</uri>
@@ -418,7 +418,7 @@
     <include>
         <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle2718</name>
-        <pose>27.5 18.5 2 0 0 1.57</pose>
+        <pose>27.5 18.5 3 0 0 1.57</pose>
     </include>
     <include>
         <uri>model://dynamic_obstacle</uri>
@@ -454,12 +454,12 @@
     <include>
         <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle2624</name>
-        <pose>26.5 24.5 2 0 0 1.57</pose>
+        <pose>26.5 24.5 1 0 0 1.57</pose>
     </include>
     <include>
         <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle1125</name>
-        <pose>11.5 25.5 2 0 0 1.57</pose>
+        <pose>11.5 25.5 1 0 0 1.57</pose>
     </include>
     <include>
         <uri>model://dynamic_obstacle</uri>
@@ -474,27 +474,27 @@
     <include>
         <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle1734</name>
-        <pose>17.5 34.5 2 0 0 1.57</pose>
+        <pose>17.5 34.5 3 0 0 1.57</pose>
     </include>
     <include>
         <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle2035</name>
-        <pose>20.5 35.5 2 0 0 1.57</pose>
+        <pose>20.5 35.5 3 0 0 1.57</pose>
     </include>
     <include>
         <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle2336</name>
-        <pose>23.5 36.5 2 0 0 1.57</pose>
+        <pose>23.5 36.5 1 0 0 1.57</pose>
     </include>
     <include>
         <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle1338</name>
-        <pose>13.5 38.5 2 0 0 1.57</pose>
+        <pose>13.5 38.5 1 0 0 1.57</pose>
     </include>
     <include>
         <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle2739</name>
-        <pose>27.5 39.5 2 0 0 1.57</pose>
+        <pose>27.5 39.5 3 0 0 1.57</pose>
     </include>
     <gui fullscreen='0'>
       <camera name='user_camera'>

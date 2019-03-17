@@ -656,20 +656,35 @@
         <name>dynamic_obstacle912</name>
         <pose>9.5 12.5 2 0 0 1.57</pose>
     </include>
+<include>
+        	<uri>model://boostbox</uri>
+        	<pose frame=''>27.5 12.5 2 0 -0 0</pose>
+    </include>
+
     <include>
         <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle1121</name>
-        <pose>11.5 21.5 2 0 0 1.57</pose>
+        <pose>11.5 21.5 1 0 0 1.57</pose>
     </include>
+<include>
+        	<uri>model://boostbox</uri>
+        	<pose frame=''>29.5 21.5 2 0 -0 0</pose>
+    </include>
+
     <include>
         <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle1624</name>
         <pose>16.5 24.5 2 0 0 1.57</pose>
     </include>
+<include>
+        	<uri>model://boostbox</uri>
+        	<pose frame=''>10.5 26.5 2 0 -0 0</pose>
+    </include>
+
     <include>
         <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle1734</name>
-        <pose>17.5 34.5 2 0 0 1.57</pose>
+        <pose>17.5 34.5 3 0 0 1.57</pose>
     </include>
     <include>
         <uri>model://dynamic_obstacle</uri>
@@ -681,11 +696,21 @@
         <name>dynamic_obstacle2336</name>
         <pose>23.5 36.5 2 0 0 1.57</pose>
     </include>
+<include>
+        	<uri>model://boostbox</uri>
+        	<pose frame=''>26.5 36.5 2 0 -0 0</pose>
+    </include>
+
     <include>
         <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle1338</name>
-        <pose>13.5 38.5 2 0 0 1.57</pose>
+        <pose>13.5 38.5 1 0 0 1.57</pose>
     </include>
+<include>
+        	<uri>model://boostbox</uri>
+        	<pose frame=''>19.5 39.5 2 0 -0 0</pose>
+    </include>
+
     <gui fullscreen='0'>
       <camera name='user_camera'>
         <pose frame=''>1.45228 -10.4475 11.1878 0 0.455643 1.12819</pose>

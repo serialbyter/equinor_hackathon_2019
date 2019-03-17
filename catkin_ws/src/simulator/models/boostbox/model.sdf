@@ -1,0 +1,20 @@
+<sdf version="1.6">
+  <model name="boostbox">
+    <link name="base">
+      <gravity>false</gravity>
+      <visual name="visual">
+        <geometry>
+          <box>
+            <size>2 2 2</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/BlueTransparent</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>
