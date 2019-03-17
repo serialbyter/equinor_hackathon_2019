@@ -37,10 +37,6 @@ T loadRequired(std::shared_ptr<ros::NodeHandle> nh, const std::string& param) {
     throw std::exception();
 };
 
-void droneStateCallback(mavros_msgs::State::ConstPtr msg) {
-
-}
-
 geometry_msgs::PoseStamped::ConstPtr drone_pose_p;
 void dronePoseCallback(geometry_msgs::PoseStamped::ConstPtr msg) {
     drone_pose_p = msg;
@@ -111,6 +107,7 @@ int main(int argc, char* argv[]){
 
     const std::string csv_file = loadRequired<std::string>(nh, "csv_map");
     const std::string scorefile = loadRequired<std::string>(nh, "scorefile");
+    const std::string map_name = loadRequired<std::string>(nh, "world_name")
     const std::string teamfile = loadRequired<std::string>(nh, "teamfile");
     teamname = extractTeamName(teamfile);
 
@@ -225,7 +222,7 @@ int main(int argc, char* argv[]){
 
         std::ofstream outfile;
         outfile.open(scorefile, std::ios_base::app);
-        outfile << "[" << std::put_time(&tm, "%d-%m-%Y %H-%M-%S") << "], " << duration.toSec() << ", " << 0 << std::endl;
+        outfile << "[" << std::put_time(&tm, "%d-%m-%Y %H-%M-%S") << "]," << map_name << "," << duration.toSec() << "," << 0 << std::endl;
 
         std_srvs::Empty srv;
 

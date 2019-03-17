@@ -8,22 +8,30 @@ import pandas as pd
 
 from std_srvs.srv import Empty, EmptyResponse, Trigger, TriggerRequest
 
-scorefile_path = os.path.join(os.path.dirname(__file__), '..')+"/scorefile1.txt"
+scorefile_path = os.path.join(os.path.dirname(__file__), '..')+"/scorefile.txt"
 team = "default-usr1"
 
 def add_new_scores_to_db(req):
     scores = pd.read_csv(scorefile_path, header=None,
-                                names=["Timestamp", "Score", "Sent"])
+                                names=["Timestamp", "Map", "Score", "Sent"])
 
     if not scores['Sent'].all():
-        update = scores[scores['Sent']==0]['Score'].values.tolist()
-        result = requests.post(
-            'https://europe-west1-hackathon-af6d5.cloudfunctions.net/addScore',
-                data = {'team':team, 'score':update})
-    
-        if result.status_code == 200:
-            scores['Sent'].values[:] = 1
-            scores.to_csv(scorefile_path, header=False, index=False)
+        update = scores[scores['Sent']==0]
+        for map_name in update['Map'].unique():
+
+            new_scores = update[update['Map'] is map_name]['Score'].values.tolist()
+
+            result = requests.post(
+                'https://europe-west1-hackathon-af6d5.cloudfunctions.net/addScore',
+                    data = {map_name: {'Team':team, 'Score':new_scores})
+            
+            if result.status_code != 200:
+                break
+            
+
+    if result.status_code == 200:
+        scores['Sent'].values[:] = 1
+        scores.to_csv(scorefile_path, header=False, index=False)
 
     return EmptyResponse()
 

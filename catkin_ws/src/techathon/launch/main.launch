@@ -14,6 +14,7 @@
 	<node name="game_master" pkg="game_master" type="game_master" output="screen">
 		<param name="csv_map" value="$(find simulator)/csvMaps/$(arg world_name).csv"/>
 		<param name="scorefile" value="$(arg scorefile)"/>
+    <param name="world_name" value="$(arg world_name)"> 
 		<param name="teamfile" value="$(arg teamfile)"/>
 	</node>
 
