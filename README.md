@@ -30,3 +30,4 @@ Happy flying, and remember to have fun!
 - [The challenge](docs/task.md) - What you are expected to solve.
 - [Efficient workflow](docs/workflow.md) - Tips and tricks for efficient workflow.
 - [Examples](docs/examples.md) - Example code with explanations.
+- [Troubleshooting](docs/troubleshooting.md) - Common problems with solutions.

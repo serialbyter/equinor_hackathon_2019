@@ -25,7 +25,7 @@ Your team should have received an address and a password to the virtual machine(
 
 4. A terminal should open with a password prompt.
 
-5. Enter your teams password.
+5. Enter your teams password. Follow prompts to change password. The current UNIX password is the one you used to log in.
 
 ### Mac OS / Linux
 
@@ -33,11 +33,9 @@ Your team should have received an address and a password to the virtual machine(
 
 2. run `ssh techathon@<your-teams-address>`. If you get a prompt asking if you are sure that you want to connect click yes.
 
-3. Enter your teams password.
+3. Enter your teams password. Follow prompts to change password. The current UNIX password is the one you used to log in. 
 
 ---
-
-You should now be prompted to change the server password. This will be your new team password! Follow the instructions in the console.
 
 If your command line starts with `techathon@<server-name>:~/equinor_hackathon_2019/catkin_ws/src/techathon/src$` your terminal is now running on the virtual machine! Note that no matter what your computer is running, this connected terminal is running Ubuntu 18.
 
@@ -67,11 +65,11 @@ Go to `www.github.com`. In the top right corner there should be a `+`. Click thi
 
 2. Give your repository a name and decide if you want it to be public or private. Click create repository.
 
-If you decided to have a private repository note that you'll have to create a personal access token to interact with the repository from the virtual machine. [A guide to doing this can be found here](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line).
+If you decided to have a private repository note that you'll have to create a personal access token to interact with the repository from the virtual machine. [A guide to doing this can be found here](https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line). 
 
 3. Make sure HTTPS is selected. Follow the "…or create a new repository on the command line" instructions. **Important:** use `git add .` instead of `git add README.md`.
 
-You will get a prompt requiring you to set your email and name. Follow the instructions that pop up with this prompt.
+You will get a prompt requiring you to set your email and name. Follow the instructions that pop up with this prompt. We recommend that everyone uses **https** and not SSH when setting up the repository. 
 
 ![git_instructions](resources/gitguide.png)
 
@@ -84,7 +82,7 @@ By now you know how to connect to the server and get terminal access to it. We w
 2. Start the simulator
 
 The simulator is started through ROS, which is a robotics software framework. You don't need any knowledge about it other than knowing it exists. To start the simulator, run 
-```
+```bash
 roslaunch techathon main.launch
 ```
 This command starts the physics simulator, loads a world with a maze and a drone, and sets up a webserver for connecting to it through the browser. If this command is successful, you should see alot of text shown on the screen and the terminal will be blocked.

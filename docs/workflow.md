@@ -14,10 +14,14 @@ and you're ready to test your code.
 
 For minor code fixes we recommend adjusting the code directly in the VM. All the VM's come with a command line text editor called nano. To open a file with nano, simply write `nano filename`. You can navigate through the file using arrow keys and to save press `Ctrl` + `X` and follow the prompts. Remember to push the changes you make on the VM!
 
+
 ## Advanced Tools
 
 Some tools which we recommend if you have used them before.
 
 ### Tmux
-
 Having multiple terminals can be a pain. `tmux` is installed on all the VM's and can be started by simply writting `tmux`. This allows you to split your terminal into multiple terminals. Instead of connecting to the VM via SSH each time you need a new terminal you can instead split the terminal you have in one command. A `tmux` cheatsheet [can be found here](https://gist.github.com/MohamedAlaa/2961058).
+
+### Visual Studio Code
+Visual studio code (or VSCode) is a popular editor on all platforms. It can be especially useful on Windows since we can have the Git terminal, SSH session, and local code editing all inside one application. 
+
