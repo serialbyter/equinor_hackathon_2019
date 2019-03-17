@@ -6,15 +6,12 @@ import rospy
 import requests
 import pandas as pd
 
-from std_srvs.srv import Empty, EmptyResponse
+from std_srvs.srv import Empty, EmptyResponse, Trigger, TriggerRequest
 
 scorefile_path = os.path.join(os.path.dirname(__file__), '..')+"/scorefile1.txt"
+team = "default-usr1"
 
 def add_new_scores_to_db(req):
-
-    #TODO team name service?
-    team = "usr1"
-
     scores = pd.read_csv(scorefile_path, header=None,
                                 names=["Timestamp", "Score", "Sent"])
 
@@ -31,8 +28,19 @@ def add_new_scores_to_db(req):
     return EmptyResponse()
 
 def main():
+    global team
     #Init ROS node
     rospy.init_node('scoreboard_service')
+    rospy.wait_for_service("/teamname")
+    teamname_service = rospy.ServiceProxy("/teamname", Trigger)
+    while True:
+        res = teamname_service(TriggerRequest())
+        if res.success:
+            team = res.message
+            break
+    
+    rospy.loginfo("Scoreboard server ready for team: " + team)
+
     s = rospy.Service("/publish_scores", Empty, add_new_scores_to_db)
     rospy.spin()
 

@@ -1,4 +1,6 @@
 #include <ros/ros.h>
+#include <std_srvs/Empty.h>
+#include <std_srvs/Trigger.h>
 #include <tf/transform_datatypes.h>
 #include <mavros_msgs/State.h>
 #include <mavros_msgs/ParamSet.h>
@@ -11,7 +13,6 @@
 #include "simulator/zone.h"
 #include "game_master/mission_timer.h"
 #include "game_master/global_map_service.h"
-#include "std_srvs/Empty.h"
 
 #include <ctime>
 #include <functional>
@@ -68,7 +69,38 @@ void publishBoost(const ros::TimerEvent& e){
         }
     }
     boost_pub.publish(msg);
+}
 
+std::string extractTeamName(const std::string& file) {
+  std::string line;
+  std::string name;
+  std::ifstream filestream(file);
+  while (filestream.is_open() && getline(filestream, line)) {
+    if (line.substr(0,5) == "name:") {
+      name = line.substr(5);
+      break;
+    }
+  }
+  filestream.close();
+
+  // Left trim
+  name.erase(name.begin(), std::find_if(name.begin(), name.end(), [](char ch) {
+               return !std::isspace(ch);
+             }));
+  // Right trim 
+  name.erase(std::find_if(name.rbegin(), name.rend(), [](char ch) {
+               return !std::isspace(ch);
+             }).base(), name.end());
+
+  return name;
+}
+
+std::string teamname;
+bool teamnameServiceHandler(std_srvs::Trigger::Request &req, std_srvs::Trigger::Response &res) {
+  res.success = true;
+  res.message = teamname;
+
+  return true;
 }
 
 int main(int argc, char* argv[]){
@@ -79,6 +111,10 @@ int main(int argc, char* argv[]){
 
     const std::string csv_file = loadRequired<std::string>(nh, "csv_map");
     const std::string scorefile = loadRequired<std::string>(nh, "scorefile");
+    const std::string teamfile = loadRequired<std::string>(nh, "teamfile");
+    teamname = extractTeamName(teamfile);
+
+    ros::ServiceServer teamnameService = nh->advertiseService("/teamname", teamnameServiceHandler);
 
     GlobalMapService mapService = GlobalMapService(nh, csv_file);
     std::vector<Zone> zones = mapService.getMapHandleRef().getGoalzones();
@@ -176,6 +212,7 @@ int main(int argc, char* argv[]){
         ROS_INFO_COND(success , "Success! Duration: %f", duration.toSec());
     }
     else{
+        ROS_INFO("Flew too high, highest altitude reached: %f", max_z);
         success = false;
     }
 

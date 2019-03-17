@@ -8,11 +8,13 @@
   <arg name="gzweb_port" default="8080"/>
   <arg name="world_name" default="static"/>
   <arg name="scorefile" default="$(find game_master)/scorefile.txt"/>
+  <arg name="teamfile" default="$(find techathon)/src/teamfile.yaml"/>
 
 
 	<node name="game_master" pkg="game_master" type="game_master" output="screen">
 		<param name="csv_map" value="$(find simulator)/csvMaps/$(arg world_name).csv"/>
 		<param name="scorefile" value="$(arg scorefile)"/>
+		<param name="teamfile" value="$(arg teamfile)"/>
 	</node>
 
 <!-- Simulator backend -->
@@ -52,6 +54,8 @@
   <node name="positioning_node" pkg="simulator" type="mocap_node" output="screen"/>
 -->
   <node name="dynamic_obstacle_publisher_node" pkg="simulator" type="dynamic_obstacle_publisher_node" output="screen"/>
+
+  <node name="scoreboard_server_node" pkg="game_master" type="scoreboard_server.py" output="screen"/>
 
   <node if="$(arg gzweb_start)" respawn="true" name="gzweb_node" pkg="simulator" type="start_gzweb.sh" args="$(arg gzweb_dir) $(arg gzweb_port)"/>
 </launch>
