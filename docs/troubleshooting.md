@@ -9,6 +9,9 @@ dos2unix *
 ```
 This will make sure all files in the directory have Unix style line endings, and should fix the error. 
 
+### Terminal doesn't display characters when typing
+This can sometimes happen if we stop the simulator before it has properly initialized. You should be able to interact with the terminal, except it doesn't display any characters that you type in. To fix this first press `CTRL+c` to abort whatever has been typed in upto now. Then write `reset` and press enter. This should fix the issue. Note that when writing `reset` you wont be able to see while you're typing. 
+
 ### Program won't stop
 If you have a program which can't be killed using `CTRL+c`, then it is most likely stuck in a loop somewhere. 
 To kill it you should first stop the simulator, ie. the one started with `roslaunch techathon main.launch`. After 
