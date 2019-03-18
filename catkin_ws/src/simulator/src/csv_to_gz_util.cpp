@@ -240,8 +240,8 @@ std::string BoostTag(int x, int y) {
     std::string tag =  "<include>\n\
         \t<uri>model://boostbox</uri>\n\
         \t<pose frame=''>";
-    tag += std::to_string(x) + ".5 ";
-    tag += std::to_string(y) + ".5 ";
+    tag += std::to_string(x) + " ";
+    tag += std::to_string(y) + " ";
     tag += "2 0 -0 0</pose>\n\
     </include>\n";
     

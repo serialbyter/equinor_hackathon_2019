@@ -897,6 +897,11 @@
 </model>
 <include>
         	<uri>model://boostbox</uri>
+        	<pose frame=''>9.5 3.5 2 0 -0 0</pose>
+    </include>
+
+<include>
+        	<uri>model://boostbox</uri>
         	<pose frame=''>21.5 7.5 2 0 -0 0</pose>
     </include>
 
@@ -938,17 +943,17 @@
     </model>
 <include>
         	<uri>model://boostbox</uri>
+        	<pose frame=''>37.5 18.5 2 0 -0 0</pose>
+    </include>
+
+<include>
+        	<uri>model://boostbox</uri>
         	<pose frame=''>11.5 19.5 2 0 -0 0</pose>
     </include>
 
 <include>
         	<uri>model://boostbox</uri>
         	<pose frame=''>25.5 19.5 2 0 -0 0</pose>
-    </include>
-
-<include>
-        	<uri>model://boostbox</uri>
-        	<pose frame=''>38.5 19.5 2 0 -0 0</pose>
     </include>
 
     <gui fullscreen='0'>

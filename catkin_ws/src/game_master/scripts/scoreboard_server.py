@@ -23,7 +23,7 @@ def add_new_scores_to_db(req):
 
             result = requests.post(
                 'https://europe-west1-hackathon-af6d5.cloudfunctions.net/addScore',
-                    data = {map_name: {'Team':team, 'Score':new_scores})
+                    data = {map_name: {'Team':team, 'Score':new_scores}})
             
             if result.status_code != 200:
                 break

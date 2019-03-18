@@ -107,7 +107,7 @@ int main(int argc, char* argv[]){
 
     const std::string csv_file = loadRequired<std::string>(nh, "csv_map");
     const std::string scorefile = loadRequired<std::string>(nh, "scorefile");
-    const std::string map_name = loadRequired<std::string>(nh, "world_name")
+    const std::string map_name = loadRequired<std::string>(nh, "world_name");
     const std::string teamfile = loadRequired<std::string>(nh, "teamfile");
     teamname = extractTeamName(teamfile);
 
@@ -131,8 +131,10 @@ int main(int argc, char* argv[]){
 
     boosts = mapService.getMapHandleRef().getBoostZones();
 
-    ros::ServiceClient mavparam_get = nh->serviceClient<mavros_msgs::ParamGet>("mavros/param/get");
-    ros::ServiceClient mavparam_set = nh->serviceClient<mavros_msgs::ParamSet>("mavros/param/set");
+    ros::ServiceClient mavparam_get = nh->serviceClient<mavros_msgs::ParamGet>("/mavros/param/get");
+    ros::ServiceClient mavparam_set = nh->serviceClient<mavros_msgs::ParamSet>("/mavros/param/set");
+    mavparam_get.waitForExistence();
+    mavparam_set.waitForExistence();
 
     MissionTimer timer;
 
@@ -175,26 +177,36 @@ int main(int argc, char* argv[]){
         else {
             ROS_INFO_THROTTLE(30, "Drone is not in zone: (%f, %f)", pos.x, pos.y);
         }
-
-        for(auto it=boosts.begin(); it!=boosts.end(); it++){
+        
+        auto it = boosts.begin();
+        while (it != boosts.end()) {
             if(it->isInside(pos.x, pos.y)){
-
+		// Get current max speed
                 mavros_msgs::ParamGet get_srv;
                 get_srv.request.param_id = "MPC_XY_VEL_MAX";
                 mavparam_get.call(get_srv);
-                
-                float current_max_speed = float(get_srv.response.value.real);
+		if (!get_srv.response.success) {
+		    ROS_WARN("failed to get maximum speed");
+		}
+                const double current_max_speed = get_srv.response.value.real;
+
+		// Increase max speed
                 mavros_msgs::ParamSet set_srv;
                 set_srv.request.param_id = "MPC_XY_VEL_MAX";
-                
                 mavros_msgs::ParamValue new_max_speed;
                 new_max_speed.integer = 0;
                 new_max_speed.real = current_max_speed+1.0;
-
                 set_srv.request.value = new_max_speed;
                 mavparam_set.call(set_srv);
+		if (!set_srv.response.success) {
+		    ROS_WARN("failed to set maximum speed");
+		}
 
-                boosts.erase(it);
+                ROS_INFO("Max speed increased to %.3f", new_max_speed.real);
+
+                it = boosts.erase(it);
+            } else {
+                it++;
             }
         }
 
