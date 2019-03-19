@@ -14,3 +14,5 @@ catkin_make
 
 echo "source $HOME/equinor_hackathon_2019/catkin_ws/devel/setup.bash" >> $HOME/.bashrc
 echo "cd $HOME/equinor_hackathon_2019/catkin_ws/src/techathon/src" >> $HOME/.bashrc
+
+sudo chage -d0 techathon
