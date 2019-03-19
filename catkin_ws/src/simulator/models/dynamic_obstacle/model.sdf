@@ -2,6 +2,17 @@
   <model name="dynamic_obstacle">
     <link name="base">
       <gravity>false</gravity>
+      <inertial>
+        <mass>1000</mass>
+        <inertia>
+          <ixx>81</ixx>
+          <ixy></ixy>
+          <ixz></ixz>
+          <iyy>81</iyy>
+          <iyz></iyz>
+          <izz>81</izz>
+        </inertia>
+      </inertial>
       <collision name="collision">
         <geometry>
           <box>

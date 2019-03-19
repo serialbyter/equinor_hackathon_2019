@@ -137,6 +137,7 @@ int main(int argc, char* argv[]){
     mavparam_set.waitForExistence();
 
     MissionTimer timer;
+    double time_bonus = 0.0;
 
     ros::Subscriber drone_pose = nh->subscribe<geometry_msgs::PoseStamped>("/mavros/local_position/pose", 1, dronePoseCallback);
     goal_pub = nh->advertise<geometry_msgs::Pose>("/goal", 1);
@@ -181,28 +182,31 @@ int main(int argc, char* argv[]){
         auto it = boosts.begin();
         while (it != boosts.end()) {
             if(it->isInside(pos.x, pos.y)){
-		// Get current max speed
-                mavros_msgs::ParamGet get_srv;
-                get_srv.request.param_id = "MPC_XY_VEL_MAX";
-                mavparam_get.call(get_srv);
-		if (!get_srv.response.success) {
-		    ROS_WARN("failed to get maximum speed");
-		}
-                const double current_max_speed = get_srv.response.value.real;
+                //// Get current max speed
+                //mavros_msgs::ParamGet get_srv;
+                //get_srv.request.param_id = "MPC_XY_VEL_MAX";
+                //mavparam_get.call(get_srv);
+                //if (!get_srv.response.success) {
+                //    ROS_WARN("failed to get maximum speed");
+                //}
+                //const double current_max_speed = get_srv.response.value.real;
 
-		// Increase max speed
-                mavros_msgs::ParamSet set_srv;
-                set_srv.request.param_id = "MPC_XY_VEL_MAX";
-                mavros_msgs::ParamValue new_max_speed;
-                new_max_speed.integer = 0;
-                new_max_speed.real = current_max_speed+1.0;
-                set_srv.request.value = new_max_speed;
-                mavparam_set.call(set_srv);
-		if (!set_srv.response.success) {
-		    ROS_WARN("failed to set maximum speed");
-		}
+                //// Increase max speed
+                //mavros_msgs::ParamSet set_srv;
+                //set_srv.request.param_id = "MPC_XY_VEL_MAX";
+                //mavros_msgs::ParamValue new_max_speed;
+                //new_max_speed.integer = 0;
+                //new_max_speed.real = current_max_speed+1.0;
+                //set_srv.request.value = new_max_speed;
+                //mavparam_set.call(set_srv);
+                //if (!set_srv.response.success) {
+                //    ROS_WARN("failed to set maximum speed");
+                //}
+                //ROS_INFO("Max speed increased to %.3f", new_max_speed.real);
 
-                ROS_INFO("Max speed increased to %.3f", new_max_speed.real);
+                // Add time bonus
+                time_bonus += 15.0;
+                ROS_INFO("Total time bonus %.f", time_bonus);
 
                 it = boosts.erase(it);
             } else {
@@ -216,16 +220,17 @@ int main(int argc, char* argv[]){
 
     timer.stop();
     ros::Duration duration = timer.getDuration();
+    double score_time = duration.toSec() - time_bonus;
 
     if(max_z < 3.5){
-        ROS_INFO_COND(success , "Success! Duration: %f", duration.toSec());
+        ROS_INFO_COND(success , "Success! Duration: %f", score_time);
     }
     else{
         ROS_INFO("Flew too high, highest altitude reached: %f", max_z);
         success = false;
     }
 
-    ROS_INFO_COND(!success, "Duration: %f", duration.toSec());
+    ROS_INFO_COND(!success, "Duration: %f", score_time);
 
     if(success){
         
@@ -234,7 +239,7 @@ int main(int argc, char* argv[]){
 
         std::ofstream outfile;
         outfile.open(scorefile, std::ios_base::app);
-        outfile << "[" << std::put_time(&tm, "%d-%m-%Y %H-%M-%S") << "]," << map_name << "," << duration.toSec() << "," << 0 << std::endl;
+        outfile << "[" << std::put_time(&tm, "%d-%m-%Y %H-%M-%S") << "]," << map_name << "," << score_time << "," << 0 << std::endl;
 
         std_srvs::Empty srv;
 

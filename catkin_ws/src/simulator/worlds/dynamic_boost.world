@@ -620,6 +620,11 @@
         </visual>        <gravity>0</gravity>
     </link>
 </model>
+    <include>
+        <uri>model://dynamic_obstacle</uri>
+        <name>dynamic_obstacle282</name>
+        <pose>28.5 2.5 2 0 0 1.57</pose>
+    </include>
 <model name='goal'>
             <pose frame=''>8.5 4.5 0.05 0 -0 0</pose>
       <static>1</static>
@@ -653,22 +658,57 @@
     </include>
     <include>
         <uri>model://dynamic_obstacle</uri>
+        <name>dynamic_obstacle266</name>
+        <pose>26.5 6.5 1 0 0 1.57</pose>
+    </include>
+    <include>
+        <uri>model://dynamic_obstacle</uri>
+        <name>dynamic_obstacle1210</name>
+        <pose>12.5 10.5 2 0 0 1.57</pose>
+    </include>
+    <include>
+        <uri>model://dynamic_obstacle</uri>
+        <name>dynamic_obstacle2211</name>
+        <pose>22.5 11.5 3 0 0 1.57</pose>
+    </include>
+    <include>
+        <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle912</name>
         <pose>9.5 12.5 2 0 0 1.57</pose>
     </include>
+    <include>
+        <uri>model://dynamic_obstacle</uri>
+        <name>dynamic_obstacle1812</name>
+        <pose>18.5 12.5 2 0 0 1.57</pose>
+    </include>
 <include>
         	<uri>model://boostbox</uri>
-        	<pose frame=''>27.5 12.5 2 0 -0 0</pose>
+        	<pose frame=''>27 12 2 0 -0 0</pose>
     </include>
 
     <include>
         <uri>model://dynamic_obstacle</uri>
+        <name>dynamic_obstacle1716</name>
+        <pose>17.5 16.5 1 0 0 1.57</pose>
+    </include>
+    <include>
+        <uri>model://dynamic_obstacle</uri>
+        <name>dynamic_obstacle717</name>
+        <pose>7.5 17.5 1 0 0 1.57</pose>
+    </include>
+    <include>
+        <uri>model://dynamic_obstacle</uri>
+        <name>dynamic_obstacle2120</name>
+        <pose>21.5 20.5 2 0 0 1.57</pose>
+    </include>
+    <include>
+        <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle1121</name>
-        <pose>11.5 21.5 1 0 0 1.57</pose>
+        <pose>11.5 21.5 3 0 0 1.57</pose>
     </include>
 <include>
         	<uri>model://boostbox</uri>
-        	<pose frame=''>29.5 21.5 2 0 -0 0</pose>
+        	<pose frame=''>29 21 2 0 -0 0</pose>
     </include>
 
     <include>
@@ -678,13 +718,43 @@
     </include>
 <include>
         	<uri>model://boostbox</uri>
-        	<pose frame=''>10.5 26.5 2 0 -0 0</pose>
+        	<pose frame=''>10 26 2 0 -0 0</pose>
     </include>
 
     <include>
         <uri>model://dynamic_obstacle</uri>
+        <name>dynamic_obstacle830</name>
+        <pose>8.5 30.5 3 0 0 1.57</pose>
+    </include>
+    <include>
+        <uri>model://dynamic_obstacle</uri>
+        <name>dynamic_obstacle1230</name>
+        <pose>12.5 30.5 2 0 0 1.57</pose>
+    </include>
+    <include>
+        <uri>model://dynamic_obstacle</uri>
+        <name>dynamic_obstacle2030</name>
+        <pose>20.5 30.5 3 0 0 1.57</pose>
+    </include>
+    <include>
+        <uri>model://dynamic_obstacle</uri>
+        <name>dynamic_obstacle1531</name>
+        <pose>15.5 31.5 2 0 0 1.57</pose>
+    </include>
+    <include>
+        <uri>model://dynamic_obstacle</uri>
+        <name>dynamic_obstacle2432</name>
+        <pose>24.5 32.5 1 0 0 1.57</pose>
+    </include>
+    <include>
+        <uri>model://dynamic_obstacle</uri>
+        <name>dynamic_obstacle834</name>
+        <pose>8.5 34.5 1 0 0 1.57</pose>
+    </include>
+    <include>
+        <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle1734</name>
-        <pose>17.5 34.5 3 0 0 1.57</pose>
+        <pose>17.5 34.5 2 0 0 1.57</pose>
     </include>
     <include>
         <uri>model://dynamic_obstacle</uri>
@@ -693,12 +763,17 @@
     </include>
     <include>
         <uri>model://dynamic_obstacle</uri>
+        <name>dynamic_obstacle2935</name>
+        <pose>29.5 35.5 3 0 0 1.57</pose>
+    </include>
+    <include>
+        <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle2336</name>
-        <pose>23.5 36.5 2 0 0 1.57</pose>
+        <pose>23.5 36.5 3 0 0 1.57</pose>
     </include>
 <include>
         	<uri>model://boostbox</uri>
-        	<pose frame=''>26.5 36.5 2 0 -0 0</pose>
+        	<pose frame=''>26 36 2 0 -0 0</pose>
     </include>
 
     <include>
@@ -708,9 +783,19 @@
     </include>
 <include>
         	<uri>model://boostbox</uri>
-        	<pose frame=''>19.5 39.5 2 0 -0 0</pose>
+        	<pose frame=''>19 39 2 0 -0 0</pose>
     </include>
 
+    <include>
+        <uri>model://dynamic_obstacle</uri>
+        <name>dynamic_obstacle840</name>
+        <pose>8.5 40.5 1 0 0 1.57</pose>
+    </include>
+    <include>
+        <uri>model://dynamic_obstacle</uri>
+        <name>dynamic_obstacle2841</name>
+        <pose>28.5 41.5 3 0 0 1.57</pose>
+    </include>
     <gui fullscreen='0'>
       <camera name='user_camera'>
         <pose frame=''>1.45228 -10.4475 11.1878 0 0.455643 1.12819</pose>
