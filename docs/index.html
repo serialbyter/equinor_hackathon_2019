@@ -106,7 +106,7 @@ function createLeaderboardTable(leaderboard){
 
     var map = Object.keys(leaderboard);
     for(var i=0; i<map.length; i++){
-        var results = leaderboard[map[i]].slice(0, 3);
+        var results = Object.values(leaderboard[map[i]]).slice(0, 3);
         var id = "#leaderboard"+i;
         $(id).bootstrapTable({
             data: results,

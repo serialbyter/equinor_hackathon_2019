@@ -19,14 +19,14 @@ def add_new_scores_to_db(req):
         update = scores[scores['Sent']==0]
         for map_name in update['Map'].unique():
 
-            new_scores = update[update['Map'] is map_name]['Score'].values.tolist()
+            new_scores = update[update['Map']==map_name]['Score'].values.tolist()
+            for score in new_scores:
+                result = requests.post( 
+                    'https://europe-west1-hackathon-af6d5.cloudfunctions.net/addScore',
+                        data = {'Map':map_name, 'Team':team, 'Score':score})
 
-            result = requests.post(
-                'https://europe-west1-hackathon-af6d5.cloudfunctions.net/addScore',
-                    data = {map_name: {'Team':team, 'Score':new_scores}})
-            
-            if result.status_code != 200:
-                break
+                if result.status_code != 200:
+                    return EmptyResponse()
             
 
     if result.status_code == 200:
