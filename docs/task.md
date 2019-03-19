@@ -82,7 +82,12 @@ Set a position target in xy-plane with height 2 meters. Set yaw orientation to
 and angle between -pi and pi. The drone will blindly go to this target, and
 hold it's position when it gets there.
 """
-drone.set_target(x, y, yaw);
+drone.set_target(x, y, yaw)
+
+"""
+Get the x coordinate of the drone.
+"""
+x = drone.position.x
 ```
 
 It is important to note that all operations sent to the drone need some time to complete. This means that although the takeoff function `drone.takeoff()` returns quickly, the actuall takeoff operation in the simulator may take several seconds to complete. The same is true for `drone.set_target(x,y,yaw)`. 
