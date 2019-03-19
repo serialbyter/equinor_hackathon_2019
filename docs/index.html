@@ -32,7 +32,7 @@ background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, F
     <div class="row h-25 p-4">
         <div class="col">
             <h2>Static Map</h2>
-            <table id="leaderboard0" class="table table-striped" height="auto">
+            <table id="static" class="table table-striped" height="auto">
                 <thead class="thead-dark">
                     <tr>
                         <th data-field="Team">Team</th>
@@ -43,7 +43,7 @@ background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, F
         </div>
         <div class="col">
             <h2>Static Boost Map</h2>
-            <table id="leaderboard1" class="table table-striped">
+            <table id="static_boost" class="table table-striped">
                 <thead class="thead-dark">
                     <tr>
                         <th data-field="Team">Team</th>
@@ -57,7 +57,7 @@ background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, F
     <div class="row h-25 p-4">
         <div class="col">
             <h2>Dynamic Map</h2>
-            <table id="leaderboard2" class="table table-striped" height="auto">
+            <table id="dynamic" class="table table-striped" height="auto">
                 <thead class="thead-dark">
                     <tr>
                         <th data-field="Team">Team</th>
@@ -68,7 +68,7 @@ background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, F
         </div>
         <div class="col">
             <h2>Dynamic Boost Map</h2>
-            <table id="leaderboard3" class="table table-striped">
+            <table id="dynamic_boost" class="table table-striped">
                 <thead class="thead-dark">
                     <tr>
                         <th data-field="Team">Team</th>
@@ -105,16 +105,18 @@ xmlhttp.onreadystatechange = function() {
 };
 
 function createLeaderboardTable(leaderboard){
-
-    var map = Object.keys(leaderboard);
-    for(var i=0; i<map.length; i++){
-        var results = leaderboard[map[i]].slice(0, 3);
-        var id = "#leaderboard"+i;
-        $(id).bootstrapTable({
-            data: results,
-            sortName: "Score",
-            sortOrder: "asce"
-        });
+    var maps = ['static', 'static_boost', 'dynamic', 'dynamic_boost'];
+    for(var i=0; i<maps.length; i++){
+        map = maps[i];
+        if(leaderboard.hasOwnProperty(map)){
+            var results = leaderboard[map].slice(0, 3);
+            console.log(results)
+            $("#"+map).bootstrapTable({
+                data: results,
+                sortName: "Score",
+                sortOrder: "asce"
+            });
+        }
     }
 }
 </script>
