@@ -771,11 +771,6 @@
         <name>dynamic_obstacle2336</name>
         <pose>23.5 36.5 3 0 0 1.57</pose>
     </include>
-<include>
-        	<uri>model://boostbox</uri>
-        	<pose frame=''>26 36 2 0 -0 0</pose>
-    </include>
-
     <include>
         <uri>model://dynamic_obstacle</uri>
         <name>dynamic_obstacle1338</name>

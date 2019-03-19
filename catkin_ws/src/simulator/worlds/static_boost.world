@@ -897,12 +897,12 @@
 </model>
 <include>
         	<uri>model://boostbox</uri>
-        	<pose frame=''>9 3 2 0 -0 0</pose>
+        	<pose frame=''>14 3 2 0 -0 0</pose>
     </include>
 
 <include>
         	<uri>model://boostbox</uri>
-        	<pose frame=''>21 7 2 0 -0 0</pose>
+        	<pose frame=''>20 7 2 0 -0 0</pose>
     </include>
 
 <include>
@@ -913,6 +913,11 @@
 <include>
         	<uri>model://boostbox</uri>
         	<pose frame=''>38 7 2 0 -0 0</pose>
+    </include>
+
+<include>
+        	<uri>model://boostbox</uri>
+        	<pose frame=''>21 11 2 0 -0 0</pose>
     </include>
 
 <model name='goal'>
@@ -941,21 +946,6 @@
         </visual>
       </link>
     </model>
-<include>
-        	<uri>model://boostbox</uri>
-        	<pose frame=''>37 18 2 0 -0 0</pose>
-    </include>
-
-<include>
-        	<uri>model://boostbox</uri>
-        	<pose frame=''>11 19 2 0 -0 0</pose>
-    </include>
-
-<include>
-        	<uri>model://boostbox</uri>
-        	<pose frame=''>25 19 2 0 -0 0</pose>
-    </include>
-
     <gui fullscreen='0'>
       <camera name='user_camera'>
         <pose frame=''>1.45228 -10.4475 11.1878 0 0.455643 1.12819</pose>
