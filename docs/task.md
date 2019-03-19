@@ -7,9 +7,9 @@ The aim of the Equinor drone challenge is to autonomously maneuver a drone throu
 We have provided the following 4 maps.
 
 * `static` - A simple maze.
-* `static_boost` - A maze with areas that provide a speed boost.
+* `static_boost` - A maze with areas that provide a time boost.
 * `dynamic` - A maze with obstacles that move randomly around the map.
-* `dynamic_boost` - A maze with obstacles and speed boosts.
+* `dynamic_boost` - A maze with obstacles and time boosts.
 
 In each map the aim is to reach the goal point as quickly as possible. Each map will have its own scoreboard and it's up to your team if you want to complete each map together or try to split up the work. 
 
