@@ -54,7 +54,7 @@ background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, F
         </div>
     </div>
     <br/>
-    <div class="row h-25  p-4">
+    <div class="row h-25 p-4">
         <div class="col">
             <h2>Dynamic Map</h2>
             <table id="leaderboard2" class="table table-striped" height="auto">
@@ -78,6 +78,8 @@ background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, F
             </table>
         </div>
     </div>
+    <br/>
+    <br/>
 </div>
 </body>
 </html>
@@ -106,12 +108,12 @@ function createLeaderboardTable(leaderboard){
 
     var map = Object.keys(leaderboard);
     for(var i=0; i<map.length; i++){
-        var results = Object.values(leaderboard[map[i]]).slice(0, 3);
+        var results = leaderboard[map[i]].slice(0, 3);
         var id = "#leaderboard"+i;
         $(id).bootstrapTable({
             data: results,
             sortName: "Score",
-            sortOrder: "desc"
+            sortOrder: "asce"
         });
     }
 }
