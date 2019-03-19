@@ -48,13 +48,11 @@ The following section gives an overview of some of the key variables and functio
 
 `global_map` is a double indexed array with matrix indexing. In other words to access coordinate (x,y) call global_map[y][x].
 
-`current_pose` is a ROS message type that contains information about the drones position and orientation. [The data structure can be found here](http://docs.ros.org/lunar/api/geometry_msgs/html/msg/PoseStamped.html). Note that the orientation is stored as a Quaternion, so some math is required to find the yaw.
+`goal` is a struct that defines a point in space defined by 3 coordinates: x,y and z. In this case only x and y will be defined. This defines the position the drone should navigate to.
 
-`goal` is a ROS message type `Pose` that defines a point in space defined by 3 coordinates: x,y and z. In this case only x and y will be defined. This defines the position the drone should navigate to.
+`obstacles` is an array of `Pose` values. It contains the position of all obstacles that move, and is updated continously. To get the position of an obstacle, use `obstacles[0].position`.
 
-`obstacles` is an array of `Pose` values. The x and y of each element define the position of a moving obstacle.
-
-`boosts` is an array of `Pose` values. The x and y of each element define the position of the boost bonus.
+`boosts` is an array of `Pose` values. The x and y of each element define the position of the time boost bonus. Going close to these points will give a 15 second time bonus. 
 
 ### Provided map
 The map provided is a 2-dimensional array of zeroes and ones, where 1 means that there is a wall, and 0 means no wall. 
@@ -82,7 +80,7 @@ Set a position target in xy-plane with height 2 meters. Set yaw orientation to
 and angle between -pi and pi. The drone will blindly go to this target, and
 hold it's position when it gets there.
 """
-drone.set_target(x, y, yaw)
+drone.set_target(x, y)
 
 """
 Get the x coordinate of the drone.
@@ -90,10 +88,10 @@ Get the x coordinate of the drone.
 x = drone.position.x
 ```
 
-It is important to note that all operations sent to the drone need some time to complete. This means that although the takeoff function `drone.takeoff()` returns quickly, the actuall takeoff operation in the simulator may take several seconds to complete. The same is true for `drone.set_target(x,y,yaw)`. 
+It is important to note that all operations sent to the drone need some time to complete. This means that although the takeoff function `drone.takeoff()` returns quickly, the actual takeoff operation in the simulator may take several seconds to complete. The same is true for `drone.set_target(x,y)`. 
 
 
 ### Note about movement precision
-TLDR; Expect some position offset when arriving at a target! 
+Expect some position offset when arriving at a target! 
 
 The drone lives in a physics simulator which simulates environment noise. It is controlled by an emulated flight controller which runs state of the art flight controller software. Because of these factors, the drone does not always fly perfectly and generally doesn't perfectly hit the target setpoint. 
