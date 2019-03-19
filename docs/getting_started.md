@@ -17,7 +17,7 @@ Your team should have received an address and a password to the virtual machine(
 
 1. Open up PuTTY.
 
-2. Write `techathon@<your-teams-address>` in the Host Name field. Don't change the port number.
+2. Write `techathon@team-<i>.northeurope.cloudapp.azure.com` in the Host Name field. Don't change the port number.
 
 ![Putty](resources/putty.png)
 
@@ -31,7 +31,7 @@ Your team should have received an address and a password to the virtual machine(
 
 1. Open up a terminal.
 
-2. run `ssh techathon@<your-teams-address>`. If you get a prompt asking if you are sure that you want to connect click yes.
+2. run `ssh techathon@team-<i>.northeurope.cloudapp.azure.com`. If you get a prompt asking if you are sure that you want to connect click yes.
 
 3. Enter your teams password. Follow prompts to change password. The current UNIX password is the one you used to log in. 
 
@@ -90,7 +90,7 @@ This command starts the physics simulator, loads a world with a maze and a drone
 3. Viewing the simulator
 
 Once the simulator is running, it can be accessed through a web browser on your computer. 
-In a webbrowser, open up `http://<your-teams-address>:8080`. You should see a green grass plane with a drone and a maze in the middle. Use you cursor to look around. Note that to orient the camera on a laptop, you need to hold down shift while left-clicking. 
+In a webbrowser, open up `http://team-<i>.northeurope.cloudapp.azure.com:8080`. You should see a green grass plane with a drone and a maze in the middle. Use you cursor to look around. Note that to orient the camera on a laptop, you need to hold down shift while left-clicking. 
 ![gazebo web](resources/gzweb.png)
 
 4. Running the example
