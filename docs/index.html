@@ -1,34 +1,41 @@
 <html>
+
 <head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link href="https://unpkg.com/bootstrap-table@1.14.1/dist/bootstrap-table.min.css" rel="stylesheet">
-<style>
-.jumbotron{
-background: #0F2027;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://unpkg.com/bootstrap-table@1.14.1/dist/bootstrap-table.min.css" rel="stylesheet">
+    <style>
+        .jumbotron {
+            background: #0F2027;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(0deg, #2C5364, #203A43, #0F2027);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(0deg, #2C5364, #203A43, #102A33);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
 
-}
-.container{
-    background: #FFFFFF;
-}
-body{
-background: #ECE9E6;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        .container {
+            background: #FFFFFF;
+        }
 
-}
-table {
-    overflow : hidden;
-}
+        body {
+            background: #ECE9E6;
+            /* fallback for old browsers */
+            background: -webkit-linear-gradient(0deg, #FFFFFF, #ECE9E6);
+            /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(0deg, #FFFFFF, #ECE9E6);
+            /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
 
-tr:nth-child(n + 4) {
-    overflow : hidden;
-    visibility: hidden;
-}
+        table{
+            overflow-y: hidden !important;
+        }
 
-</style>
+        tr:nth-child(n + 4) {
+            overflow: hidden;
+            visibility: hidden;
+        }
+    </style>
 </head>
 
 <div class="jumbotron text-white">
@@ -36,61 +43,60 @@ tr:nth-child(n + 4) {
         <center><b>Scoreboard</b></center>
     </h1>
 </div>
+
 <body>
-<div class="container rounded shadow">
-    <div class="row h-25 p-4">
-        <div class="col">
-            <h2>Static Map</h2>
-            <table id="static" class="table table-striped" height="auto">
-                <thead class="thead-dark">
-                    <tr>
-                        <th data-field="Team">Team</th>
-                        <th data-field="Score">Score</th>
-                    </tr>
-                </thead>
-            </table>
+    <div class="container-fluid rounded">
+        <div class="row p-4">
+            <div class="col h-25">
+                <h2>Static Map</h2>
+                <table id="static" class="table table-striped" height="auto">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th data-field="Team">Team</th>
+                            <th data-field="Score">Score</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="col h-25">
+                <h2>Static Boost Map</h2>
+                <table id="static_boost" class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th data-field="Team">Team</th>
+                            <th data-field="Score">Score</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
-        <div class="col">
-            <h2>Static Boost Map</h2>
-            <table id="static_boost" class="table table-striped">
-                <thead class="thead-dark">
-                    <tr>
-                        <th data-field="Team">Team</th>
-                        <th data-field="Score">Score</th>
-                    </tr>
-                </thead>
-            </table>
+        <div class="row p-4">
+            <div class="col h-25">
+                <h2>Dynamic Map</h2>
+                <table id="dynamic" class="table table-striped" height="auto">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th data-field="Team">Team</th>
+                            <th data-field="Score">Score</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="col h-25">
+                <h2>Dynamic Boost Map</h2>
+                <table id="dynamic_boost" class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th data-field="Team">Team</th>
+                            <th data-field="Score">Score</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
-    <br/>
-    <div class="row h-25 p-4">
-        <div class="col">
-            <h2>Dynamic Map</h2>
-            <table id="dynamic" class="table table-striped" height="auto">
-                <thead class="thead-dark">
-                    <tr>
-                        <th data-field="Team">Team</th>
-                        <th data-field="Score">Score</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-        <div class="col">
-            <h2>Dynamic Boost Map</h2>
-            <table id="dynamic_boost" class="table table-striped">
-                <thead class="thead-dark">
-                    <tr>
-                        <th data-field="Team">Team</th>
-                        <th data-field="Score">Score</th>
-                    </tr>
-                </thead>
-            </table>
-        </div>
-    </div>
-    <br/>
-    <br/>
-</div>
 </body>
+
 </html>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -100,34 +106,30 @@ tr:nth-child(n + 4) {
     crossorigin="anonymous"></script>
 <script src="https://unpkg.com/bootstrap-table@1.14.1/dist/bootstrap-table.min.js"></script>
 <script>
-
-var xmlhttp = new XMLHttpRequest();
-var url = 'https://europe-west1-hackathon-af6d5.cloudfunctions.net/getLeaderboard';
-
-xmlhttp.open("GET", url, true);
-xmlhttp.send();
-xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        var leaderboard = JSON.parse(this.responseText);
-        createLeaderboardTable(leaderboard);
-    }
-};
-
-function createLeaderboardTable(leaderboard){
-    var maps = ['static', 'static_boost', 'dynamic', 'dynamic_boost'];
-    for(var i=0; i<maps.length; i++){
-        map = maps[i];
-        if(leaderboard.hasOwnProperty(map)){
-            // console.log(Object.keys(leaderboard[map]))
-            var results = Object.values(leaderboard[map]);//slice(0, 3);
-
-            console.log(results)
-            $("#"+map).bootstrapTable({
-                data: results,
-                sortName: "Score",
-                sortOrder: "asce",
-            });
+    var xmlhttp = new XMLHttpRequest();
+    var url = 'https://europe-west1-hackathon-af6d5.cloudfunctions.net/getLeaderboard';
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            var leaderboard = JSON.parse(this.responseText);
+            createLeaderboardTable(leaderboard);
+        }
+    };
+    function createLeaderboardTable(leaderboard) {
+        var maps = ['static', 'static_boost', 'dynamic', 'dynamic_boost'];
+        for (var i = 0; i < maps.length; i++) {
+            map = maps[i];
+            if (leaderboard.hasOwnProperty(map)) {
+                // console.log(Object.keys(leaderboard[map]))
+                var results = Object.values(leaderboard[map]);//slice(0, 3);
+                console.log(results)
+                $("#" + map).bootstrapTable({
+                    data: results,
+                    sortName: "Score",
+                    sortOrder: "asce",
+                });
+            }
         }
     }
-}
 </script>
