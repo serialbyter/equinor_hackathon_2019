@@ -9,7 +9,7 @@ This guide will guide you through setting up the project. To do this we will go 
 
 ## Connecting to your virtual machine
 
-Your team should have received an address and a password to the virtual machine(VM). This allows you to connect to the server using the SSH command. Follow the guide for your operating system.
+Your team should have received an address and a password to the virtual machine(VM). This allows you to connect to the server using the SSH command. Follow the guide for your operating system. **<i> should be replaced by your team number!**
 
 **Important:** For security reasons, ensure that you are connected to a VPN before connecting to the VM.
 
@@ -25,7 +25,7 @@ Your team should have received an address and a password to the virtual machine(
 
 4. A terminal should open with a password prompt.
 
-5. Enter your teams password. Follow prompts to change password. The current UNIX password is the one you used to log in.
+5. Enter the password equinor2019. Follow prompts to change password. The current UNIX password is the one you used to log in.
 
 ### Mac OS / Linux
 
@@ -33,7 +33,7 @@ Your team should have received an address and a password to the virtual machine(
 
 2. run `ssh techathon@team-<i>.northeurope.cloudapp.azure.com`. If you get a prompt asking if you are sure that you want to connect click yes.
 
-3. Enter your teams password. Follow prompts to change password. The current UNIX password is the one you used to log in. 
+3. Enter the password equinor2019. Follow prompts to change password. The current UNIX password is the one you used to log in. 
 
 ---
 
