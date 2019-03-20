@@ -19,6 +19,17 @@ background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);  /* Chrome 10-2
 background: linear-gradient(to right, #FFFFFF, #ECE9E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
 }
+table {
+    overflow:hidden;
+}
+
+tr:nth-child(n + 4) {
+    overflow:none;
+    visibility: hidden;
+}
+.h-25 {
+  height: screen.height*0.3;
+}
 </style>
 </head>
 
@@ -109,12 +120,14 @@ function createLeaderboardTable(leaderboard){
     for(var i=0; i<maps.length; i++){
         map = maps[i];
         if(leaderboard.hasOwnProperty(map)){
-            var results = leaderboard[map].slice(0, 3);
+            // console.log(Object.keys(leaderboard[map]))
+            var results = Object.values(leaderboard[map]);//slice(0, 3);
+
             console.log(results)
             $("#"+map).bootstrapTable({
                 data: results,
                 sortName: "Score",
-                sortOrder: "asce"
+                sortOrder: "asce",
             });
         }
     }
