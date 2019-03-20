@@ -9,7 +9,7 @@ This guide will guide you through setting up the project. To do this we will go 
 
 ## Connecting to your virtual machine
 
-Your team should have received an address and a password to the virtual machine(VM). This allows you to connect to the server using the SSH command. Follow the guide for your operating system. **<i> should be replaced by your team number!**
+Your team should have received an address and a password to the virtual machine(VM). This allows you to connect to the server using the SSH command. Follow the guide for your operating system. \<i> should be replaced by your team number!
 
 **Important:** For security reasons, ensure that you are connected to a VPN before connecting to the VM.
 
